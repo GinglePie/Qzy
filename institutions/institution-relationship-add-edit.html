@@ -1,0 +1,432 @@
+<input type="hidden" ng-model="relationshipFormBean.institutionRelationshipId">
+<div class="portlet light bordered">
+  <div class="portlet-title tabbable-line">
+      <div class="caption">
+          <i class="icon-bubbles font-dark hide"></i>
+          <span class="caption-subject font-dark bold uppercase">Relationship add/edit</span>
+      </div>
+  </div>
+  <div class="portlet-body">
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-xs-12">
+        <div class="col-md-8 col-lg-8 col-xs-12">
+          <div class="col-md-6 col-lg-6 col-xs-12">
+            <div class="form-group form-md-line-input form-md-floating-label">
+              <input type="text" class="form-control" id="shortName"
+                     ng-class="{'edited ng-touched':relationshipFormBean.shortName.length > 0}"
+                     ng-model="relationshipFormBean.shortName" maxlength="100" 
+                     is-view-only="P240">
+              <label for="shortName">Short Name</label>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-6 col-xs-12">
+            <div class="form-group form-md-line-input form-md-floating-label">
+              <select class="form-control" ng-class="{'edited ng-touched':relationshipFormBean.agreementTypeId > 0}"
+                      id="focusGroup" ng-model="relationshipFormBean.agreementTypeId"
+                      ng-options="agreementType.agreementTypeId as agreementType.agreementTypeName for agreementType in masterAgreementTypes"
+                      is-view-only="P240">
+                  <option value=""></option>
+              </select>
+              <label for="agreementTypeId">Coorperation type </label>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-6 col-xs-12">
+            <div class="form-group form-md-line-input form-md-floating-label">
+              <input type="text" class="form-control" id="longName"
+                     ng-class="{'edited ng-touched':relationshipFormBean.longName.length > 0}"
+                     ng-model="relationshipFormBean.longName" maxlength="100" 
+                     is-view-only="P240">
+              <label for="longName">Long Name</label>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-6 col-xs-12">
+            <div class="form-group form-md-line-input form-md-floating-label">
+                <div class="input-group right-addon">
+                    <input type="text" class="form-control" data-provide="datepicker" id="startDate"
+                           ng-model="relationshipFormBean.startDate" maxlength="10"
+                           ng-class="{'edited ng-touched':relationshipFormBean.startDate.length > 0}"
+                           data-date-format="dd/mm/yyyy"
+                           is-view-only="P240">
+                    <label for="startDate">Start date</label>
+                    <span class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </span>
+                </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-6 col-xs-12">
+            <div class="form-group form-md-line-input form-md-floating-label">
+              <select class="form-control" ng-class="{'edited ng-touched':relationshipFormBean.levelOfCooperation.length > 0}"
+                      id="focusGroup" ng-model="relationshipFormBean.levelOfCooperation"
+                      ng-options="key as value for (key,value) in masterLevelOfCooperations"
+                      is-view-only="P240">
+                  <option value=""></option>
+              </select>
+              <label for="levelOfCooperation">Level </label>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-6 col-xs-12">
+            <div class="form-group form-md-line-input form-md-floating-label">
+                <div class="input-group right-addon">
+                    <input type="text" class="form-control" data-provide="datepicker" id="endDate"
+                           ng-model="relationshipFormBean.endDate" maxlength="10"
+                           ng-class="{'edited ng-touched':relationshipFormBean.endDate.length > 0}"
+                           data-date-format="dd/mm/yyyy"
+                           is-view-only="P240">
+                    <label for="endDate">End date</label>
+                    <span class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </span>
+                </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-6 col-xs-12">
+            <div class="form-group form-md-line-input form-md-floating-label">
+              <select class="form-control" ng-class="{'edited ng-touched':relationshipFormBean.facultyId > 0}"
+                      id="focusGroup" ng-model="relationshipFormBean.facultyId"
+                      ng-options="faculty.facultyId as faculty.facultyName for faculty in masterFaculties"
+                      is-view-only="P240">
+                  <option value=""></option>
+              </select>
+              <label for="facultyId">Chula Faculty </label>
+            </div>
+          </div>
+          <div class="col-md-offset-6 col-lg-offset-6 col-xs-12">
+            &nbsp;
+          </div>
+          <div class="col-md-6 col-lg-6 col-xs-12">
+            <div class="form-group form-md-line-input form-md-floating-label">
+              <input type="text" class="form-control" id="quotaIn"
+                     ng-model="relationshipFormBean.quotaIn" maxlength="3" number-only
+                     ng-class="{'edited ng-touched':relationshipFormBean.quotaIn > 0}"
+                     ng-value="relationshipFormBean.quotaIn == 0?'':relationshipFormBean.quotaIn"
+                     is-view-only="P240">
+              <label for="quotaIn">Quota in</label>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-6 col-xs-12">
+            <div class="form-group form-md-line-input form-md-floating-label">
+              <input type="text" class="form-control" id="quotaOut"
+                     ng-model="relationshipFormBean.quotaOut" maxlength="3" number-only
+                     ng-class="{'edited ng-touched':relationshipFormBean.quotaOut > 0}"
+                     ng-value="relationshipFormBean.quotaOut == 0?'':relationshipFormBean.quotaOut"
+                     is-view-only="P240">
+              <label for="quotaOut">Quota out</label>
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-12 col-xs-12">
+            <div class="col-md-4 col-lg-4 col-xs-12">
+              <div class="form-group form-md-checkboxes ">
+                  <div class="md-checkbox-list">
+                      <div class="md-checkbox">
+                          <input type="checkbox" id="relationshipFormBean.autoRenew" class="md-check"
+                                 ng-class="{'ng-not-empty ng-dirty':true}"
+                                 ng-checked="relationshipFormBean.autoRenew=='Y'"
+                                 ng-model="relationshipFormBean.autoRenew" value="Y"
+                                 is-view-only="P240">
+                          <label for="relationshipFormBean.autoRenew">
+                              <span></span>
+                              <span class="check"></span>
+                              <span class="box"></span> Auto renew
+                          </label>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-xs-12">
+              <div class="form-group form-md-radios">
+                  <div class="md-radio-inline">
+                      <div class="md-radio">
+                          <input type="radio" id="active" name="rdStatus" ng-model="relationshipFormBean.status" ng-value="'A'" class="md-radiobtn" checked is-view-only="P240">
+                          <label for="active">
+                              <span></span>
+                              <span class="check"></span>
+                              <span class="box"></span> Active</label>
+                      </div>
+                      <div class="md-radio">
+                          <input type="radio" id="inActive" name="rdStatus" ng-model="relationshipFormBean.status" ng-value="'I'" class="md-radiobtn" is-view-only="P240">
+                          <label for="inActive">
+                              <span></span>
+                              <span class="check"></span>
+                              <span class="box"></span> InActive</label>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-xs-12">
+              <label>File upload</label> 
+              <span>
+                <a ng-click="downloadFile(relationshipFile,relationshipFormBean.institutionRelationshipId)">
+                  {{relationshipFile}}
+                  <i class="fa fa-download" ng-show="relationshipFile.length > 0"></i>
+                </a>
+              </span>
+              <input type="file" is-view-only="P240" ng-model="relationshipFormBean.fileUpload" base-sixty-four-input do-not-parse-if-oversize maxsize="5000" file-input/>
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-12 col-xs-12">
+            <div class="form-group form-md-line-input form-md-floating-label">
+                <textarea class="form-control" rows="5"
+                          ng-model="relationshipFormBean.note"
+                          ng-class="{'edited ng-touched':relationshipFormBean.note.length > 0}"
+                          is-view-only="P240"></textarea>
+                <label>Note</label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-4 col-xs-12">
+          <h4>This agreement also coorperate in</h4>
+          <div class="form-group form-md-checkboxes ">
+            <div class="md-checkbox-list">
+                <div class="md-checkbox" ng-repeat="agreementType in masterAgreementTypes">
+                    <input type="checkbox" id="agreementType-{{agreementType.agreementTypeId}}" class="md-check"
+                           ng-class="{'ng-not-empty ng-dirty':true}"
+                           ng-checked="initialCheckBox(agreementType.agreementTypeId)"
+                           ng-model="agreementType.selected" value="{{agreementType.agreementTypeId}}"
+                           is-view-only="P240" >
+                    <label for="agreementType-{{agreementType.agreementTypeId}}">
+                        <span></span>
+                        <span class="check"></span>
+                        <span class="box"></span> {{agreementType.agreementTypeName}}
+                    </label>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-12 col-xs-12">
+        <div class="col-md-6 col-lg-6 col-xs-12 text-left">
+          <button type="button" class="btn grey-cascade btn-outline" ng-click="goToPage('site.institution.institution-management')"> Back </button>
+          <button type="button" class="btn red btn-outline" ng-click="doDeleteRelationship()" can-action="P240">Delete</button>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xs-12 text-right">
+          <button type="button" class="btn green-dark font-white" ng-click="doSaveRelationship()" can-action="P240">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 col-lg-6 col-xs-12">
+    <div class="portlet light bordered">
+      <div class="portlet-title tabbable-line">
+        <div class="caption">
+            <i class="icon-bubbles font-dark hide"></i>
+            <span class="caption-subject font-dark bold uppercase">Internal Contact Person</span>
+        </div>
+        <div class="actions">
+          <a class="btn btn-circle btn-icon-only green-dark"
+             ng-click="resetModal(); initAddContactPerson('I');"
+             can-action="P241">
+              <i class="fa fa-plus"></i>
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <div class="row">
+          <div class="col-sm-12 col-lg-12 col-xs-12">
+            <table ng-table="InternalContactPersonTable" class="table table-hover table-stripped">
+                <thead>
+                    <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Name</b></th>
+                    <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Email</b></th>
+                    <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Contact</b></th>
+                    <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Faculty</b></th>
+                    <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Project</b></th>
+                    <th class="text-center bg-chula-pink-light font-white" width="5%"><b>Edit</b></th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="d in $data">
+                        <td class="text-left">{{d.fullName}}</td>
+                        <td class="text-left">{{d.email}}</td>
+                        <td class="text-left">{{d.contactPhoneNumber}}</td>
+                        <td class="text-center">{{d.chulaMsFaculty.facultyName}}</td>
+                        <td class="text-center">{{d.contactProject }}</td>
+                        <td class="text-center">
+                          <a ng-click="initEditContactPerson(d.institutionRelationshipContactPersonId);">
+                            <i class="fa fa-edit "></i>
+                          </a>
+                        </td>
+                    </tr>
+                </tbody>
+             </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-6 col-xs-12">
+    <div class="portlet light bordered">
+      <div class="portlet-title tabbable-line">
+        <div class="caption">
+            <i class="icon-bubbles font-dark hide"></i>
+            <span class="caption-subject font-dark bold uppercase">External Contact Person</span>
+        </div>
+        <div class="actions">
+          <a class="btn btn-circle btn-icon-only green-dark"
+             ng-click="resetModal(); initAddContactPerson('E');"
+             can-action="P241">
+              <i class="fa fa-plus"></i>
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <div class="row">
+          <div class="col-sm-12 col-lg-12 col-xs-12">
+            <table ng-table="ExternalContactPersonTable" class="table table-hover table-stripped">
+              <thead>
+                  <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Name</b></th>
+                  <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Email</b></th>
+                  <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Contact</b></th>
+                  <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Faculty</b></th>
+                  <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Project</b></th>
+                  <th class="text-center bg-chula-pink-light font-white" width="5%"><b>Edit</b></th>
+                  
+              </thead>
+              <tbody>
+                  <tr ng-repeat="d in $data">
+                    <td class="text-left">{{d.fullName}}</td>
+                    <td class="text-left">{{d.email}}</td>
+                    <td class="text-left">{{d.contactPhoneNumber}}</td>
+                    <td class="text-center">{{d.chulaMsFaculty.facultyName}}</td>
+                    <td class="text-center">{{d.contactProject }}</td>
+                      <td class="text-center">
+                        <a ng-click="initEditContactPerson(d.institutionRelationshipContactPersonId)">
+                          <i class="fa fa-edit "></i>
+                        </a>
+                      </td>
+                      
+                  </tr>
+              </tbody>
+             </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<modal-contact-person controller-name="InstitutionRelationshipContactPersonController" page-code="P241"></modal-contact-person>
+<!-- <div id="modal-contact-person" class="modal container fade" tabindex="-1" data-backdrop="static" data-keyboard="false" data-attention-animation="false">
+  <input type="hidden" ng-model="relationshipContactPersonFormBean.contactPersonType"/>
+  <div class="modal-header bg-chula-pink-light">
+      <h4 class="font-white" id="exchange-institution-name"></h4>
+  </div>
+  <div class="modal-body">
+    <h4 class="font-chula-pink">Contact person</h4>
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-xs-12">
+        <div class="col-md-6 col-lg-6 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+            <input type="text" class="form-control" id="name"
+                   ng-model="relationshipContactPersonFormBean.name" maxlength="100" >
+            <label for="name">Name</label>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+            <input type="text" class="form-control" id="email"
+                   ng-model="relationshipContactPersonFormBean.email" maxlength="100" >
+            <label for="email">E-mail</label>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+            <input type="text" class="form-control" id="contactNumber"
+                   ng-model="relationshipContactPersonFormBean.contactNumber" maxlength="20" >
+            <label for="contactNumber">Contact number</label>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+            <select class="form-control" ng-class="{'edited ng-touched':relationshipContactPersonFormBean.facultyId > 0}"
+                    id="focusGroup" ng-model="relationshipContactPersonFormBean.facultyId">
+                <option value="" selected></option>
+                <option ng-repeat="faculty in masterFaculties" value="{{faculty.facultyId}}">{{ faculty.facultyName }}</option>
+            </select>
+            <label for="facultyId">Chula Faculty </label>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+            <input type="text" class="form-control" id="position"
+                   ng-model="relationshipContactPersonFormBean.position" maxlength="100" >
+            <label for="position">Position</label>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+            <select class="form-control" ng-class="{'edited ng-touched':institutionFocusBean.focusGroupId > 0}"
+                    id="focusGroup" ng-model="institutionFocusBean.focusGroupId"
+                    ng-change="doSearchFocusSpecific()">
+                <option value="" selected></option>
+                <option ng-repeat="focusGroup in masterFocusGroups" value="{{focusGroup.focusGroupId}}">{{ focusGroup.focusGroupDescription }}</option>
+            </select>
+            <label for="focusGroupId">Function </label>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-12 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+              <textarea class="form-control" rows="3"
+                        ng-model="relationshipContactPersonFormBean.projectName"
+                        ng-class="{'edited ng-touched':relationshipContactPersonFormBean.projectName.length > 0}"></textarea>
+              <label>Project name</label>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-12 col-xs-12">
+          <div class="form-group form-md-checkboxes ">
+              <div class="md-checkbox-inline">
+                  <div class="md-checkbox">
+                      <input type="checkbox" id="prospect" class="md-check"
+                             ng-class="{'ng-not-empty ng-dirty':true}"
+                             ng-checked="initialCheckBox(group.groupId)"
+                             ng-model="relationshipContactPersonFormBean.prospect" value="Y" >
+                      <label for="relationshipContactPersonFormBean.prospect">
+                          <span></span>
+                          <span class="check"></span>
+                          <span class="box"></span> Prospect
+                      </label>
+                  </div>
+                  <div class="md-checkbox">
+                      <input type="checkbox" id="research" class="md-check"
+                             ng-class="{'ng-not-empty ng-dirty':true}"
+                             ng-checked="initialCheckBox(group.groupId)"
+                             ng-model="relationshipContactPersonFormBean.research" value="Y" >
+                      <label for="relationshipContactPersonFormBean.research">
+                          <span></span>
+                          <span class="check"></span>
+                          <span class="box"></span> Research
+                      </label>
+                  </div>
+                  <div class="md-checkbox">
+                      <input type="checkbox" id="alumnus" class="md-check"
+                             ng-class="{'ng-not-empty ng-dirty':true}"
+                             ng-checked="initialCheckBox(group.groupId)"
+                             ng-model="NetworkMouFormBean.alumnus" value="Y" >
+                      <label for="NetworkMouFormBean.alumnus">
+                          <span></span>
+                          <span class="check"></span>
+                          <span class="box"></span> Alumnus
+                      </label>
+                  </div>
+                  <div class="md-checkbox">
+                      <input type="checkbox" id="tbc" class="md-check"
+                             ng-class="{'ng-not-empty ng-dirty':true}"
+                             ng-checked="initialCheckBox(group.groupId)"
+                             ng-model="NetworkMouFormBean.tbc" value="Y" >
+                      <label for="NetworkMouFormBean.tbc">
+                          <span></span>
+                          <span class="check"></span>
+                          <span class="box"></span> TBC
+                      </label>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn grey-cascade" nc-click=""> Back </button>
+      <button type="button" class="btn grey-cascade btn-outline"> Cancel </button>
+      <button type="button" class="btn green-dark font-white" ng-click="doSaveFocus()">Submit</button>
+  </div>
+</div> -->

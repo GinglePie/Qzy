@@ -1,0 +1,47 @@
+<div class="page-header-logo" style="min-height:90px;" >
+  <nav class="navbar">
+    <div class="container-fluid">
+      <div id="index" class="navbar-brand c-black" style="padding:0 0 0 15px; margin-top:10px;">
+          <img src="assets/img/logo72.png" alt="logo" style="margin-left:15px;"/>
+          &nbsp;
+          <div class="font-chula-pink">
+            <h4 style="margin-top:0px;">Office of International Affairs and Global Network</h4>
+          </div>
+      </div>
+    </div>
+  </nav>
+</div>
+<div class="page-header" ng-controller="TopBarController">
+  <nav class="navbar" role="navigation" ng-controller="LoginController as ctrl" >
+      <div class="container-fluid">
+
+
+
+          <div class="havbar-header">
+              <!-- BEGIN LOGO -->
+
+              <!-- END LOGO -->
+              <!-- BEGIN TOPBAR ACTIONS -->
+              <div class="topbar-actions ">
+                <label class="font-white"><b>User:</b> {{userFullName}}</label>&nbsp;&nbsp;
+                  <!-- BEGIN USER PROFILE -->
+                  <div class="btn-group-img btn-group">
+                      <button type="button" class="btn btn-sm dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                          <!-- <img src="../assets/layouts/layout5/img/avatar1.jpg" alt="">  -->
+                          <i class="icon-user font-black font-lg"></i>
+                      </button>
+                      <ul class="dropdown-menu-v2" role="menu">
+                          <li >
+                              <a href="javascript:void(0);" ng-click="doLogout()">
+                                  <i class="icon-key"></i> Signout </a>
+                          </li>
+                      </ul>
+                  </div>
+                  <!-- END USER PROFILE -->
+              </div>
+              <!-- END TOPBAR ACTIONS -->
+          </div>
+      </div>
+      <!--/container-->
+  </nav>
+</div>

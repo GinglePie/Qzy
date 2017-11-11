@@ -1,0 +1,86 @@
+<div class="row">
+  <div class="col-lg-12 col-xs-12 col-sm-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title tabbable-line">
+                <div class="caption">
+                    <i class="icon-bubbles font-dark hide"></i>
+                    <span class="caption-subject font-dark bold uppercase">Master Province</span>
+                </div>
+            </div>
+             <div class="portlet-body">
+                <div class="row">
+                  <div class="col-sm-6 col-sm-offset-3 col-lg-6 col-lg-offset-3 col-xs-12">
+                      <div class="form-group form-md-line-input form-md-floating-label">
+                        <input type="text" class="form-control" id="provinceName"
+                               ng-model="provinceName" maxlength="100" >
+                        <label for="provinceName">Province name</label>
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <button type="button" class="btn bg-chula-pink-light font-white"
+                                ng-click="doSearchProvince()">
+                          Search
+                        </button>
+                    </div>
+                </div>
+             </div>
+        </div>
+        <div class="portlet light bordered">
+            <div class="portlet-body" style="padding-bottom:70px;">
+              <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12 text-right" style="margin-bottom:10px;">
+                <a class="btn green-dark btn-outline"
+                     data-target="#modal-add-edit-province" data-toggle="modal"
+                     ng-click="resetModal()">
+                      <i class="fa fa-plus-circle "></i>
+                      Add Province
+                  </a>
+              </div>
+                <table ng-table="ProvinceTable" class="table table-bordered table-hover">
+                    <thead>
+                        <th class="text-center bg-chula-pink-light font-white" width="30%"><b>Province name</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="5%"><b>Edit</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="5%"><b>Delete</b></th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="d in $data">
+                            <td class="text-left">{{d.provinceName}}</td>
+                            <td class="text-center">
+                              <a ng-click="initEditProvince(d.provinceId)">
+                                <i class="fa fa-edit "></i>
+                              </a>
+                            </td>
+                            <td class="text-center">
+                              <a ng-click="doDeleteProvince(d.provinceId)">
+                                <i class="fa fa-trash font-red"></i>
+                              </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                 </table>
+            </div>
+        </div>
+    </div>
+    <div id="modal-add-edit-province" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false" data-attention-animation="false">
+        <div class="modal-header">
+            <h4>Add/Edit Province</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <input type="hidden" ng-model="modalProvinceId"/>
+                <div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xs-12">
+                  <div class="form-group form-md-line-input form-md-floating-label">
+                      <input type="text" class="form-control" id="modalProvinceName" ng-class="{'edited ng-touch':modalProvinceName.length > 0}"
+                             ng-model="modalProvinceName" maxlength="100">
+                      <label for="modalProvinceName">Province name</label>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn grey-cascade btn-outline"> Cancel </button>
+            <button type="button" class="btn green-dark font-white" ng-click="doSaveProvince()">Submit</button>
+        </div>
+    </div>
+</div>

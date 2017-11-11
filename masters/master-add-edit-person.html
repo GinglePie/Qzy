@@ -1,0 +1,282 @@
+<div class="row">
+  <div class="col-lg-12 col-xs-12 col-sm-12">
+        <input type="hidden" ng-model="person.personId"/>
+        <div class="portlet light bordered">
+            <div class="portlet-title tabbable-line">
+                <div class="caption">
+                    <i class="icon-bubbles font-dark hide"></i>
+                    <span class="caption-subject font-dark bold uppercase">Person infomation</span>
+                </div>
+            </div>
+             <div class="portlet-body">
+                <div class="row">
+                  <div class="col-sm-10 col-sm-offset-1 col-lg-10 col-lg-offset-1 col-xs-12">
+                      <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                          <input type="text" class="form-control require" id="identityNo"
+                                 ng-model="person.identityNo" maxlength="13" number-only
+                                 ng-class="{'edited ng-touched':person.identityNo.length > 0}">
+                          <label for="identityNo">Identification No <span class="font-red">*</span></label>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                          <input type="text" class="form-control" id="passportVisa"
+                                 ng-model="person.passportVisa" maxlength="13" 
+                                 ng-class="{'edited ng-touched':person.passportVisa.length > 0}">
+                          <label for="passportVisa">Passport No</label>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                          <input type="text" class="form-control" id="visaType"
+                                 ng-model="person.visaType" maxlength="5" 
+                                 ng-class="{'edited ng-touched':person.visaType.length > 0}">
+                          <label for="visaType">Visa type</label>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                          <select class="form-control" ng-class="{'edited ng-touched':person.prefixId > 0}"
+                                  id="person.prefixId" ng-model="person.prefixId"
+                                  ng-options="prefix.prefixId as prefix.prefixName for prefix in prefixes">
+                                <option value="0"></option>
+                          </select>
+                          <!-- <select class="form-control require" id="person.prefixId" ng-model="person.prefixId">
+                              <option value="" selected></option>
+                              <option ng-repeat="prefix in prefixes" value="{{prefix.prefixId}}">{{ prefix.prefixName }}</option>
+                          </select> -->
+                          <label for="person.prefixId">Prefix <span class="font-red">*</span></label>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                            <div class="input-group right-addon">
+                                <input type="text" class="form-control" data-provide="datepicker" id="birthDate" data-date-language="th-th" 
+                                       ng-model="person.birthDate" maxlength="10"
+                                       ng-class="{'edited ng-touched':person.birthDate.length > 0}">
+                                <label for="birthDate">Birth date</label>
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                          <input type="text" class="form-control require" id="nationality" 
+                                 ng-model="person.nationality" maxlength="10"
+                                 ng-class="{'edited ng-touched':person.nationality.length > 0}">
+                          <label for="nationality">Nationality <span class="font-red">*</span></label>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                          <input type="text" class="form-control require" id="firstName" 
+                                 ng-model="person.firstName" maxlength="30"
+                                 ng-class="{'edited ng-touched':person.firstName.length > 0}">
+                          <label for="firstName">First name <span class="font-red">*</span></label>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                          <input type="text" class="form-control" id="middleName"
+                                 ng-model="person.middleName" maxlength="30"
+                                 ng-class="{'edited ng-touched':person.middleName.length > 0}">
+                          <label for="middleName">Middle name</label>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                          <input type="text" class="form-control require" id="lastName" 
+                                 ng-model="person.lastName" maxlength="30"
+                                 ng-class="{'edited ng-touched':person.lastName.length > 0}">
+                          <label for="lastName">Last name <span class="font-red">*</span></label>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                          <select class="form-control require" id="personType" 
+                                  ng-model="person.personType" ng-class="{'edited ng-touched':person.personType.length > 0}">
+                              <option value="" selected></option>
+                              <option ng-repeat="(key, value) in personTypes" value="{{key}}">{{ value }}</option>
+                          </select>
+                          <label for="personType">Person type <span class="font-red">*</span></label>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <br/>
+              <div class="portlet-title tabbable-line">
+                <div class="caption">
+                    <i class="icon-bubbles font-dark hide"></i>
+                    <span class="caption-subject font-dark bold uppercase">Address</span>
+                </div>
+              </div>
+              <div class="portlet-body">
+                <div class="row">
+                  <div class="col-sm-10 col-sm-offset-1 col-lg-10 col-lg-offset-1 col-xs-12">
+                      <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                          <input type="text" class="form-control require" id="homeNo"
+                                 ng-model="person.homeNo" maxlength="10"
+                                 ng-class="{'edited ng-touched':person.homeNo.length > 0}">
+                          <label for="homeNo">Home no <span class="font-red">*</span></label>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                          <input type="text" class="form-control" id="buildingName"
+                                 ng-model="person.buildingName" maxlength="30"
+                                 ng-class="{'edited ng-touched':person.buildingName.length > 0}">
+                          <label for="buildingName">Building name</label>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                          <input type="text" class="form-control" id="floor"
+                                 ng-model="person.floor" maxlength="2" number-only
+                                 ng-class="{'edited ng-touched':person.floor.length > 0}">
+                          <label for="floor">Floor</label>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                          <input type="text" class="form-control" id="roomNo"
+                                 ng-model="person.roomNo" maxlength="5"
+                                 ng-class="{'edited ng-touched':person.roomNo.length > 0}">
+                          <label for="roomNo">Room no</label>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                          <input type="text" class="form-control" id="soi"
+                                 ng-model="person.soi" maxlength="50"
+                                 ng-class="{'edited ng-touched':person.soi.length > 0}">
+                          <label for="soi">Soi</label>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                          <input type="text" class="form-control require" id="road"
+                                 ng-model="person.road" maxlength="50"
+                                 ng-class="{'edited ng-touched':person.road.length > 0}">
+                          <label for="road">Road <span class="font-red">*</span></label>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                          <select class="form-control" ng-class="{'edited ng-touched':person.provinceId > 0}"
+                                  id="person.provinceId" ng-model="person.provinceId" ng-change="doSearchAmphur()"
+                                  ng-options="province.provinceId as province.provinceName for province in provinces">
+                                <option value="0"></option>
+                          </select>
+                          <label for="provinceId">Province <span class="font-red">*</span></label>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                          <select class="form-control" ng-class="{'edited ng-touched':person.amphurId > 0}"
+                                  id="person.amphurId" ng-model="person.amphurId" ng-change="doSearchTambol()"
+                                  ng-options="amphur.amphurId as amphur.amphurName for amphur in amphurs">
+                                <option value="0"></option>
+                          </select>
+                          <label for="person.amphurId">Amphur <span class="font-red">*</span></label>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                          <select class="form-control" ng-class="{'edited ng-touched':person.tambolId > 0}"
+                                  id="person.tambolId" ng-model="person.tambolId"
+                                  ng-options="tambol.tambolId as tambol.tambolName for tambol in tambols">
+                                <option value="0"></option>
+                          </select>
+                          <label for="tambolId">Tambol <span class="font-red">*</span></label>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                          <input type="text" class="form-control require" id="postCode"
+                                 ng-model="person.postCode" maxlength="5" number-only
+                                 ng-class="{'edited ng-touched':person.postCode.length > 0}">
+                          <label for="postCode">Post code <span class="font-red">*</span></label>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                          <input type="text" class="form-control require" id="phoneNumber"
+                                 ng-model="person.phoneNumber" maxlength="15"
+                                 ng-class="{'edited ng-touched':person.phoneNumber.length > 0}">
+                          <label for="phoneNumber">Phone number <span class="font-red">*</span></label>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                          <input type="text" class="form-control" id="email"
+                                 ng-model="person.email" maxlength="50"
+                                 ng-class="{'edited ng-touched':person.email.length > 0}">
+                          <label for="email">E-mail</label>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                          <select class="form-control" ng-class="{'edited ng-touched':person.countryId > 0}"
+                                  id="person.countryId" ng-model="person.countryId"
+                                  ng-options="country.countryId as country.countryName for country in countries">
+                                <option value="0"></option>
+                          </select>
+                          <!-- <select class="form-control require" id="countryId" ng-model="person.countryId">
+                              <option value="" selected></option>
+                              <option ng-repeat="country in countries" value="{{country.countryId}}">{{ country.countryName }}</option>
+                          </select> -->
+                          <label for="countryId">Country <span class="font-red">*</span></label>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <br/>
+              <div class="portlet-title tabbable-line">
+                <div class="caption">
+                    <i class="icon-bubbles font-dark hide"></i>
+                    <span class="caption-subject font-dark bold uppercase">Emergency Contact</span>
+                </div>
+              </div>
+              <div class="portlet-body">
+                <div class="row">
+                  <div class="col-sm-10 col-sm-offset-1 col-lg-10 col-lg-offset-1 col-xs-12">
+                      <div class="col-sm-6 col-lg-6 col-xs-12">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                          <input type="text" class="form-control require" id="emergencyContactPersonName"
+                                 ng-model="person.emergencyContactPersonName" maxlength="100"
+                                 ng-class="{'edited ng-touched':person.emergencyContactPersonName.length > 0}">
+                          <label for="emergencyContactPersonName">Contact full name <span class="font-red">*</span></label>
+                        </div>
+                      </div>
+                      <div class="col-sm-6 col-lg-6 col-xs-12">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                          <input type="text" class="form-control requie" id="emergencyContactPersonPhone"
+                                 ng-model="person.emergencyContactPersonPhone" maxlength="15"
+                                 ng-class="{'edited ng-touched':person.emergencyContactPersonPhone.length > 0}">
+                          <label for="emergencyContactPersonPhone">Contact phone number <span class="font-red">*</span></label>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+                <br/>
+                <div class="row">
+                  <div class="col-sm-12 col-lg-12 col-xs-12 text-center">
+                    <button type="reset" class="btn btn-outline grey-cascade">
+                      Reset
+                    </button>
+                    <button type="button" class="btn bg-chula-pink-light font-white"
+                            ng-click="doSavePerson()">
+                      Submit
+                    </button>
+                  </div>
+                </div>
+             </div>
+        </div>
+    </div>
+</div>

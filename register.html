@@ -1,0 +1,92 @@
+<div class="register">
+  <div class="header bg-pink">
+      <!-- <a href="index.html">
+          <img src="img/logo72.png" alt="" />
+      </a> -->
+      <a ng-click="goLogin()"><p class="topMenu font-white uppercase">เข้าสู่ระบบ</p></a>
+      <a ng-click="goRegister()"><p class="topMenu font-white uppercase">สมัครสมาชิก</p></a>
+  </div>
+  <!-- END LOGO -->
+  <!-- BEGIN LOGIN -->
+  <div class="content portlet light bordered">
+      <!-- BEGIN LOGIN FORM -->
+      <form class="" ng-submit="doRegister()">
+          <h3 class="form-title">
+            <img src="assets/img/icon/logo-with-shadow.png" style="max-height: 100px; width: auto;" alt="" />
+            <span class="font-pink">สมัครสมาชิก</span>
+          </h3>
+          <p class="">ข้อมูลทั้งหมดที่คุณกรอกจะถูกเก็บเป็นความลับตาม นโยบายคุ้มครองความเป็นส่วนตัว</p>
+          
+
+
+          <div class="form-group">
+              <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+              <label class="">ชื่อ-นามสกุล:</label>
+              <input class="form-control form-control-solid placeholder-no-fix" type="text"
+                     autocomplete="off" placeholder="ชื่อ-นามสกุล" name="fullname"
+                     ng-model="credential.fullname"/>
+          </div>
+          <div class="form-group">
+              <label class="">ชื่อร้านค้า:</label>
+              <input class="form-control form-control-solid placeholder-no-fix" type="text"
+                     autocomplete="off" placeholder="ชื่อร้านค้า เช่น ชาบูดี" name="shop"
+                     ng-model="credential.shop"/>
+          </div>
+
+          <div class="form-group">
+              <label class="">อีเมล์:</label>
+              <input class="form-control form-control-solid placeholder-no-fix" type="text"
+                     autocomplete="off" placeholder="อีเมล์ เช่น shabudee@hotmail.com" name="email"
+                     ng-model="credential.username"/>
+          </div>
+          <div class="form-group">
+              <label class="">รหัสผ่าน:</label>
+              <input class="form-control form-control-solid placeholder-no-fix" type="password"
+                     autocomplete="off" placeholder="รหัสผ่าน" name="password"
+                     ng-model="credential.password"/>
+          </div>
+          <div class="form-group">
+              <label class="control-label visible-ie8 visible-ie9">ยืนยันรหัสผ่าน:</label>
+              <input class="form-control form-control-solid placeholder-no-fix" type="password"
+                     autocomplete="off" placeholder="ยืนยันรหัสผ่าน" name="password"
+                     ng-model="credential.confirmPassword"/>
+          </div>
+          
+          <div class="form-group">
+              <label class="">เพศ:</label><br>
+              <input class="form-gender" type="radio" value="male" name="gender"
+                     ng-model="credential.gender"/>
+              <img src="assets/img/icon/male.jpg" style="max-height: 30px; width: auto;" alt="" />
+              <input class="" type="radio" value="female" name="gender"
+                     ng-model="credential.gender"/>
+              <img src="assets/img/icon/female.jpg" style="max-height: 30px; width: auto;" alt="" />
+          </div>
+          <div class="form-group">
+              <label class="">วันเกิด:</label>
+              <input class="form-control form-control-solid placeholder-no-fix" type="date"
+                     autocomplete="off" name="birthday"
+                     ng-model="credential.birthday"/>
+          </div>
+          <div class="form-group">
+              <label class="">หมายเลขโทรศัพท์:</label>
+              <input class="form-control form-control-solid placeholder-no-fix" type="tel"
+                     autocomplete="off" placeholder="หมายเลขโทรศัพท์ เช่น 0932225555" name="phone"
+                     ng-model="credential.phone"/>
+          </div>
+          <div class="form-group">
+              <input class="" type="checkbox" value="confirm" name="gender"
+                     ng-model="credential.confirmTermsOfUser" /> 
+              คุณเข้าใจและยอมรับ ข้อตกลงการใช้งาน ทั้งหมดแล้ว
+          </div>
+
+          <div class="form-actions" style="text-align: center">              
+              <button type="submit" class="btn font-white bg-pink uppercase">ลงทะเบียน</button> 
+          </div>
+          <div class="bottomSigninBox">
+          </div>
+
+      </form>
+      <!-- END LOGIN FORM -->
+  </div>
+  <div class="copyright"> 2017 © Qzy by True Incube The App Builder</div>
+</div>

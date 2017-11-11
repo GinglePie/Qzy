@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" ng-app="oiaApplication">
+    <!--<![endif]-->
+    <!-- BEGIN HEAD -->
+
+    <head>
+        <meta charset="utf-8" />
+        <title>CHULA | OIA</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta content="Office of International Affairs and Global Network" name="description" />
+        <meta content="" name="author" />
+        <!-- BEGIN LAYOUT FIRST STYLES -->
+        <!-- <link href="//fonts.googleapis.com/css?family=Oswald:400,300,700" rel="stylesheet" type="text/css" /> -->
+        <!-- END LAYOUT FIRST STYLES -->
+        <!-- BEGIN GLOBAL MANDATORY STYLES -->
+
+        <link href="assets/fonts/font-awesome.css" rel="stylesheet" type="text/css" />
+        <link href="assets/fonts/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/vendors/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+        <!-- END GLOBAL MANDATORY STYLES -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <link href="assets/vendors/bootstrap-sweetalert/sweetalert.css" rel="stylesheet" type="text/css" />
+        <link href="assets/vendors/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/vendors/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css" />
+        <link href="assets/vendors/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
+
+        <!-- END PAGE LEVEL PLUGINS -->
+        <!-- BEGIN THEME GLOBAL STYLES -->
+        <link href="assets/css/datepicker.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/components-md.css" rel="stylesheet" id="style_components" type="text/css" />
+        <link href="assets/css/plugins-md.min.css" rel="stylesheet" type="text/css" />
+        <!-- END THEME GLOBAL STYLES -->
+        <!-- BEGIN THEME LAYOUT STYLES -->
+        <link href="assets/css/layout.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/login.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/register.css" rel="stylesheet" type="text/css" />
+        <!-- END THEME LAYOUT STYLES -->
+        <link rel="shortcut icon" href="favicon.ico" />
+
+        <link href="assets/vendors/angular-loading-bar/build/loading-bar.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/vendors/ng-table/dist/ng-table.min.css" rel="stylesheet" type="text/css"/>
+
+    </head>
+    <!-- END HEAD -->
+    <body class="page-md" >
+        <div ui-view='login'></div>
+        <div ui-view='register'></div>
+        <!-- BEGIN HEADER -->
+        <header ui-view='topbar'></header>
+        <!-- <div id="loading-bar-container"></div> -->
+        <!-- END HEADER -->
+        <div ui-view='main-container'></div>
+
+
+        <div class="quick-nav-overlay"></div>
+        <!-- END QUICK NAV -->
+        <!--[if lt IE 9]>
+            <script src="../static/vendors/plugins/respond.min.js"></script>
+            <script src="../static/vendors/plugins/excanvas.min.js"></script>
+            <script src="../static/vendors/plugins/ie8.fix.min.js"></script>
+        <![endif]-->
+        <!-- BEGIN CORE PLUGINS -->
+        <script src="assets/vendors/jquery.min.js" type="text/javascript"></script>
+        <script src="assets/vendors/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="assets/vendors/js.cookie.min.js" type="text/javascript"></script>
+        <script src="assets/vendors/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+        <script src="assets/vendors/jquery.blockui.min.js" type="text/javascript"></script>
+        <script src="assets/vendors/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+        <script src="assets/vendors/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
+
+        <!-- END CORE PLUGINS -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <script src="assets/vendors/select2/js/select2.min.js" type="text/javascript"></script>
+        <script src="assets/vendors/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
+        <script src="assets/vendors/app-template.js" type="text/javascript"></script>
+
+        <script src="assets/vendors/bootstrap-datepicker-thai.js" type="text/javascript"></script>
+        <script src="assets/vendors/bootstrap-datepicker.th.js" type="text/javascript"></script>
+
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <script src="assets/vendors/bootstrap-modal/js/bootstrap-modalmanager.js" type="text/javascript"></script>
+        <script src="assets/vendors/bootstrap-modal/js/bootstrap-modal.js" type="text/javascript"></script>
+        <!-- END PAGE LEVEL PLUGINS -->
+        <!-- END PAGE LEVEL PLUGINS -->
+
+        <script src="assets/vendors/angular/angular.min.js" type="text/javascript"></script>
+        <script src="assets/vendors/angular-ui-router/release/angular-ui-router.min.js" type="text/javascript"></script>
+        <script src="assets/vendors/angular-loading-bar/build/loading-bar.min.js" type="text/javascript"></script>
+        <script src="assets/vendors/angular-animate/angular-animate.min.js" type="text/javascript"></script>
+        <script src="assets/vendors/angular-cache-buster/angular-cache-buster.js" type="text/javascript"></script>
+        <script src="assets/vendors/angular-local-storage/dist/angular-local-storage.min.js" type="text/javascript"></script>
+        <script src="assets/vendors/angular-cookies/angular-cookies.min.js" type="text/javascript"></script>
+        <script src="assets/vendors/angular-bootstrap/ui-bootstrap-tpls.min.js" type="text/javascript"></script>
+        <script src="assets/vendors/ng-table/dist/ng-table.js" type="text/javascript"></script>
+        <script src="assets/vendors/angular-base64-upload/angular-base64-upload.js"></script>
+        <script src="assets/vendors/underscore/underscore-min.js"></script>
+
+        <!-- BEGIN PAGE LEVEL SCRIPTS -->
+        <script src="assets/vendors/ui-extended-modals.min.js" type="text/javascript"></script>
+        <!-- END PAGE LEVEL SCRIPTS -->
+        <!-- BEGIN THEME LAYOUT SCRIPTS -->
+        <!-- <script src="vendors/login/login.js" type="text/javascript"></script> -->
+
+        <script src="assets/vendors/quick-sidebar.min.js" type="text/javascript"></script>
+        <script src="assets/vendors/quick-nav.min.js" type="text/javascript"></script>
+        <!-- END THEME LAYOUT SCRIPTS -->
+
+
+        <!-- BEGIN THEME GLOBAL SCRIPTS -->
+        <script src="assets/js/app.js" type="text/javascript"></script>
+        <script src="assets/js/config.js" type="text/javascript"></script>
+        <script src="assets/js/util.js" type="text/javascript"></script>
+
+        <script src="assets/js/controllers/LoginController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/RegisterController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/MenuController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/TopBarController.js" type="text/javascript"></script>
+
+        <!-- Main search -->
+        <!-- Controller -->
+        <script src="assets/js/controllers/mains/MainController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/institutions/InstitutionAddEditController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/institutions/InstitutionFocusController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/institutions/InstitutionRelationshipController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/institutions/InstitutionRelationshipAddEditController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/institutions/InstitutionRelationshipContactPersonController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/institutions/InstitutionOpportunityController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/institutions/InstitutionOpportunityAddEditController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/institutions/InstitutionOpportunityContactPersonController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/institutions/InstitutionActivityController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/institutions/InstitutionActivityAddEditController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/institutions/InstitutionActivityContactPersonController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/institutions/InstitutionExchangeController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/institutions/InstitutionMainContactPersonController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/institutions/InstitutionContactPersonController.js" type="text/javascript"></script>
+        
+
+        <!-- Service -->
+        <script src="assets/js/services/mains/MainService.js" type="text/javascript"></script>
+        <script src="assets/js/services/institutions/InstitutionService.js" type="text/javascript"></script>
+        <script src="assets/js/services/institutions/InstitutionFocusService.js" type="text/javascript"></script>
+        <script src="assets/js/services/institutions/InstitutionExchangeService.js" type="text/javascript"></script>
+        <script src="assets/js/services/institutions/InstitutionRelationshipService.js" type="text/javascript"></script>
+        <script src="assets/js/services/institutions/InstitutionOpportunityService.js" type="text/javascript"></script>
+        <script src="assets/js/services/institutions/InstitutionActivityService.js" type="text/javascript"></script>
+        <script src="assets/js/services/institutions/InstitutionContactPersonService.js" type="text/javascript"></script>
+        
+
+        <!-- Network-Mou -->
+        <!-- Controller -->
+        <script src="assets/js/controllers/relations/RelationNetworkMOUController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/relations/RelationNetworkMOUInformationController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/relations/RelationNetworkMOUInstitutionController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/relations/RelationNetworkMOUFacultyController.js" type="text/javascript"></script>
+
+        <!-- Service -->
+        <script src="assets/js/services/relations/RelationNetworkMOUService.js" type="text/javascript"></script>
+        <script src="assets/js/services/relations/RelationNetworkMOUInformationService.js" type="text/javascript"></script>
+        <script src="assets/js/services/relations/RelationNetworkMOUInstitutionService.js" type="text/javascript"></script>
+        <script src="assets/js/services/relations/RelationNetworkMOUFacultyService.js" type="text/javascript"></script>
+
+        <!-- Activity -->
+        <!-- Controller -->
+        <script src="assets/js/controllers/activities/ActivityExchangeController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/activities/ActivityExchangeInformationController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/activities/ActivityExchangePersonController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/activities/ActivityInstructionResearchController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/activities/ActivityInstructionResearchAddEditController.js" type="text/javascript"></script>
+
+        <!-- Service -->
+        <script src="assets/js/services/activities/ActivityExchangeService.js" type="text/javascript"></script>
+        <script src="assets/js/services/activities/ActivityExchangeInformationService.js" type="text/javascript"></script>
+        <script src="assets/js/services/activities/ActivityExchangePersonService.js" type="text/javascript"></script>
+        <script src="assets/js/services/activities/ActivityInstructionResearchService.js" type="text/javascript"></script>
+
+        <!-- User Management -->
+        <!-- Controller -->
+        <script src="assets/js/controllers/user-management/UserManagementController.js" type="text/javascript"></script>
+        <!-- Service -->
+
+        <!-- Master -->
+        <!-- Controller -->
+        <script src="assets/js/controllers/masters/MasterRegionController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/masters/MasterCountryController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/masters/MasterInstitutionController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/masters/MasterFacultyController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/masters/MasterAgreementTypeController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/masters/MasterPrefixController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/masters/MasterPersonController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/masters/MasterPersonDetailController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/masters/MasterProvinceController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/masters/MasterAmphurController.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/masters/MasterTambolController.js" type="text/javascript"></script>
+
+        <!-- Service -->
+        <script src="assets/js/services/masters/MasterCountryService.js" type="text/javascript"></script>
+        <script src="assets/js/services/masters/MasterRegionService.js" type="text/javascript"></script>
+        <script src="assets/js/services/masters/MasterInstitutionService.js" type="text/javascript"></script>
+        <script src="assets/js/services/masters/MasterFacultyService.js" type="text/javascript"></script>
+        <script src="assets/js/services/masters/MasterAgreementTypeService.js" type="text/javascript"></script>
+        <script src="assets/js/services/masters/MasterPrefixService.js" type="text/javascript"></script>
+        <script src="assets/js/services/masters/MasterPersonService.js" type="text/javascript"></script>
+        <script src="assets/js/services/masters/MasterProvinceService.js" type="text/javascript"></script>
+        <script src="assets/js/services/masters/MasterAmphurService.js" type="text/javascript"></script>
+        <script src="assets/js/services/masters/MasterTambolService.js" type="text/javascript"></script>
+
+        <script src="assets/js/services/masters/MasterNetworkMOUTypeService.js" type="text/javascript"></script>
+        <script src="assets/js/services/masters/MasterLevelOfCooperationService.js" type="text/javascript"></script>
+        <script src="assets/js/services/masters/MasterEducationDegreeService.js" type="text/javascript"></script>
+
+        <script src="assets/js/services/masters/MasterFocusTypeService.js" type="text/javascript"></script>
+        <script src="assets/js/services/masters/MasterFocusGroupService.js" type="text/javascript"></script>
+        <script src="assets/js/services/masters/MasterFocusSpecificService.js" type="text/javascript"></script>
+        <script src="assets/js/services/masters/MasterActivityTypeService.js" type="text/javascript"></script>
+        <script src="assets/js/services/masters/MasterLinkageService.js" type="text/javascript"></script>
+        <script src="assets/js/services/masters/MasterInteractionService.js" type="text/javascript"></script>
+        <script src="assets/js/services/masters/MasterPriorityTypeService.js" type="text/javascript"></script>
+
+        <script src="assets/js/services/masters/MasterRoleService.js" type="text/javascript"></script>
+        <script src="assets/js/services/masters/MasterWebPageService.js" type="text/javascript"></script>
+
+
+        <!-- Report -->
+        <!-- Controller -->
+        <script src="assets/js/controllers/reports/Rpt001Controller.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/reports/Rpt002Controller.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/reports/Rpt003Controller.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/reports/Rpt004Controller.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/reports/Rpt005Controller.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/reports/Rpt006Controller.js" type="text/javascript"></script>
+        <script src="assets/js/controllers/reports/Rpt023Controller.js" type="text/javascript"></script>
+
+        <!-- Service -->
+        <script src="assets/js/services/reports/RptService.js" type="text/javascript"></script>
+
+
+        <!-- Admins -->
+
+        <!-- User management -->
+        <!-- Controller -->
+        <script src="assets/js/controllers/user-management/UserManagementController.js" type="text/javascript"></script>
+
+        <!-- Service -->
+        <script src="assets/js/services/user-management/UserManagementService.js" type="text/javascript"></script>
+
+        <!-- Role management -->
+        <!-- Controller -->
+        <script src="assets/js/controllers/role-management/RoleManagementController.js" type="text/javascript"></script>
+        
+        <!-- Service -->
+        <script src="assets/js/services/webPageMapRole-management/WebPageMapRoleManagementService.js" type="text/javascript"></script>
+        
+
+        <script src="assets/js/services/AuthenticationService.js" type="text/javascript"></script>
+
+
+        <!-- END THEME GLOBAL SCRIPTS -->
+        <script src="assets/js/interceptors/HttpInterceptor.js" type="text/javascript"></script>
+        <script src="assets/js/interceptors/AuthenticationInterceptor.js" type="text/javascript"></script>
+
+
+        <script src="assets/js/directives/defaultDirective.js" type="text/javascript"></script>
+        <script src="assets/js/directives/modal-institution-directive.js" type="text/javascript"></script>
+        <script src="assets/js/directives/authenticate-directive.js" type="text/javascript"></script>
+
+    </body>
+
+</html>

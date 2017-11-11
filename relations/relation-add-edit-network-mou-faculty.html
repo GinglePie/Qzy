@@ -1,0 +1,174 @@
+<!-- begin chula faculty -->
+<div class="row" id="institution-0">
+  <div class="col-sm-12 col-lg-12 col-xs-12">
+    <div class="portlet light bordered">
+      <div class="portlet-title tabbable-line">
+          <div class="caption">
+              <i class="icon-bubbles font-dark hide"></i>
+              <span class="caption-subject font-dark bold uppercase">Chula</span>
+          </div>
+          <div class="actions">
+            <a class="btn btn-icon-only green" ng-click="appendFaculty('chula')">
+                <i class="fa fa-plus"></i>
+            </a>
+          </div>
+      </div>
+      <div class="portlet-body">
+        <div class="row row-cnt" id="chula">
+          <div class="col-sm-11 col-sm-offset-1 col-lg-11 col-lg-offset-1 col-xs-12">
+            <div class="row">
+              <div class="col-sm-6 col-lg-6 col-xs-12">
+                <div class="form-group form-md-line-input form-md-floating-label">
+                  <!-- <select class="form-control" id="facultyElem" ng-model="networkMouChula.networkMouFaculties[0].facultyId">
+                      <option value="" selected></option>
+                      <option ng-repeat="faculty in faculties" value="{{faculty.facultyId}}">{{ faculty.facultyName }}</option>
+                  </select> -->
+                  <select class="form-control"
+                          id="facultyElem" ng-model="NetworkMouFacultyFormBean.networkMouChula.networkMouFaculties[0].facultyId"
+                          ng-class="{'edited ng-touched':NetworkMouFacultyFormBean.networkMouChula.networkMouFaculties[0].facultyId > 0}"
+                          ng-options="faculty.facultyId as faculty.facultyName for faculty in faculties">
+                        <option value=""></option>
+                  </select>
+                  <label for="facultyId">Faculty name </label>
+                </div>
+              </div>
+              <div class="col-sm-4 col-lg-4 col-xs-12">
+                <div class="form-group form-md-line-input form-md-floating-label">
+                  <input type="text" class="form-control require" id="quotaChula"
+                         ng-model="NetworkMouFacultyFormBean.networkMouChula.networkMouFaculties[0].quota" maxlength="3" number-only
+                         ng-class="{'edited ng-touched':NetworkMouFacultyFormBean.networkMouChula.networkMouFaculties[0].quota > 0}">
+                  <label for="quotaChula[0]">Quota</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- begin row template -->
+<span style="display:none;" id="chula-template">
+  <div class="row row-template">
+    <div class="col-sm-11 col-sm-offset-1 col-lg-11 col-lg-offset-1 col-xs-12">
+      <div class="row">
+        <div class="col-sm-6 col-lg-6 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+            <select class="form-control"
+                    id="facultyElem" ng-model="NetworkMouFacultyFormBean.networkMouChula.networkMouFaculties[0].facultyId"
+                    ng-class="{'edited ng-touched':NetworkMouFacultyFormBean.networkMouChula.networkMouFaculties[0].facultyId > 0}"
+                    ng-options="faculty.facultyId as faculty.facultyName for faculty in faculties">
+                  <option value=""></option>
+            </select>
+            <label for="facultyId">Faculty name </label>
+          </div>
+        </div>
+        <div class="col-sm-4 col-lg-4 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+            <input type="text" class="form-control require" id="quotaElem"
+                   ng-model="NetworkMouFacultyFormBean.networkMouChula.networkMouFaculties[0].quota" maxlength="3" number-only
+                   ng-class="{'edited ng-touched':NetworkMouFacultyFormBean.networkMouChula.networkMouFaculties[0].quota > 0}">
+            <label for="quotaChula">Quota</label>
+          </div>
+        </div>
+        <div class="col-sm-1 col-lg-1 col-xs-12" style="margin-top:20px;">
+          <a class="btn btn-circle btn-icon-only red delRow">
+              <i class="icon-trash"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</span>
+<!-- end row template -->
+<!-- end chula faculty -->
+
+<!-- begin faculty -->
+<div class="row" ng-repeat="i in institutions track by $index" id="institution-{{$index}}">
+  <input type="hidden" ng-model="NetworkMouFacultyFormBean.networkMouInstitutions[$index].institutionId"
+                       ng-init="NetworkMouFacultyFormBean.networkMouInstitutions[$index].institutionId = i.chulaMsInstitution.institutionId"/>
+  <div class="col-sm-12 col-lg-12 col-xs-12">
+    <div class="portlet light bordered">
+      <div class="portlet-title tabbable-line">
+        <div class="caption">
+            <i class="icon-bubbles font-dark hide"></i>
+            <span class="caption-subject font-dark bold uppercase">{{i.chulaMsInstitution.institutionName}}</span>
+        </div>
+        <div class="actions">
+          <a class="btn btn-icon-only green" ng-click="appendFaculty(i.chulaMsInstitution.institutionId)">
+              <i class="fa fa-plus"></i>
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <div class="row row-cnt" id="{{i.chulaMsInstitution.institutionId}}">
+          <div class="col-sm-11 col-sm-offset-1 col-lg-11 col-lg-offset-1 col-xs-12">
+            <div class="row">
+              <div class="col-sm-6 col-lg-6 col-xs-12">
+                <div class="form-group form-md-line-input form-md-floating-label">
+                  <input type="text" class="form-control require" id="facultyElem"
+                         ng-model="NetworkMouFacultyFormBean.networkMouInstitutions[$index].networkMouFaculties[0].facultyName" maxlength="200"
+                         ng-class="{'edited ng-touched':NetworkMouFacultyFormBean.networkMouInstitutions[$index].networkMouFaculties[0].facultyName.length > 0}">
+                  <label for="facultyName">Faculty name </label>
+                </div>
+              </div>
+              <div class="col-sm-4 col-lg-4 col-xs-12">
+                <div class="form-group form-md-line-input form-md-floating-label">
+                  <input type="text" class="form-control require" id="quotaElem"
+                         ng-model="NetworkMouFacultyFormBean.networkMouInstitutions[$index].networkMouFaculties[0].quota" maxlength="13" number-only
+                         ng-class="{'edited ng-touched':NetworkMouFacultyFormBean.networkMouInstitutions[$index].networkMouFaculties[0].quota > 0}">
+                  <label for="quota">Quota</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- begin row template -->
+  <span style="display:none;" id="{{i.chulaMsInstitution.institutionId}}-template">
+    <div class="row row-template">
+      <div class="col-sm-11 col-sm-offset-1 col-lg-11 col-lg-offset-1 col-xs-12">
+        <div class="row">
+          <div class="col-sm-6 col-lg-6 col-xs-12">
+            <div class="form-group form-md-line-input form-md-floating-label">
+              <input type="text" class="form-control require" id="facultyElem"
+                     ng-model="NetworkMouFacultyFormBean.networkMouInstitutions[0].networkMouFaculties[0].facultyName" maxlength="200">
+              <label for="personType">Faculty name </label>
+            </div>
+          </div>
+          <div class="col-sm-4 col-lg-4 col-xs-12">
+            <div class="form-group form-md-line-input form-md-floating-label">
+              <input type="text" class="form-control require" id="quotaElem"
+                     ng-model="NetworkMouFacultyFormBean.networkMouInstitutions[0].networkMouFaculties[0].quota" maxlength="13" number-only
+                     ng-class="{'edited ng-touched':networkMouFaculties.quota > 0}">
+              <label for="quota">Quota</label>
+            </div>
+          </div>
+          <div class="col-sm-1 col-lg-1 col-xs-12" style="margin-top:20px;">
+            <a class="btn btn-circle btn-icon-only red delRow">
+                <i class="icon-trash"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </span>
+</div>
+<!-- end row template -->
+<!-- end faculty -->
+<div class="row">
+  <div class="col-sm-12 col-lg-12 col-xs-12 text-center">
+    <button type="button" class="btn btn-outline red-pink">
+      Back
+    </button>
+    <button type="reset" class="btn btn-outline grey-cascade">
+      Reset
+    </button>
+    <button type="button" class="btn bg-chula-pink-light font-white"
+            ng-click="doSaveFaculty()">
+      Submit
+    </button>
+  </div>
+</div>

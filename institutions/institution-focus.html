@@ -1,0 +1,119 @@
+<div class="portlet-title tabbable-line">
+  <div class="caption">
+      <i class="icon-bubbles font-dark hide"></i>
+      <span class="caption-subject font-dark bold uppercase">Focus</span>
+  </div>
+  <div class="actions">
+    <a class="btn btn-circle btn-icon-only green-dark"
+       data-target="#modal-focus" data-toggle="modal" ng-click="resetModal()"
+       can-action="P220">
+        <i class="fa fa-plus"></i>
+    </a>
+  </div>
+</div>
+<div class="portlet-body">
+  <div class="row">
+    <div class="col-sm-12 col-lg-12 col-xs-12">
+      <table ng-table="FocusTable" class="table table-hover table-striped">
+          <thead>
+              <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Focus Type</b></th>
+              <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Focus Group</b></th>
+              <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Focus Specific</b></th>
+              <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Status</b></th>
+              <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Note</b></th>
+              <th class="text-center bg-chula-pink-light font-white" width="5%"><b>Edit</b></th>
+          </thead>
+          <tbody>
+              <tr ng-repeat="d in institutionFocusDatas">
+                  <td class="text-left">{{d.chulaMsFocusType.focusTypeDescription}}</td>
+                  <td class="text-left">{{d.chulaMsFocusGroup.focusGroupDescription }}</td>
+                  <td class="text-left">{{ null==d.chulaMsFocusSpecific?"":d.chulaMsFocusSpecific.focusSpecificDescription }}</td>
+                  <td class="text-left">{{d.institutionFocusStatus }}</td>
+                  <td class="text-left">{{d.institutionFocusNote }}</td>
+                  <td class="text-center">
+                    <a ng-click="initEditInstitutionFocus(d.chulaTrInstitutionFocusPk,d.chulaMsFocusSpecific,d.institutionFocusNote)">
+                      <i class="fa fa-edit "></i>
+                    </a>
+                  </td>
+              </tr>
+          </tbody>
+       </table>
+       <div class="col-sm-6 col-lg-6 col-xs-12 text-left">
+         <a class="font-green-dark">
+           <i class="fa fa-download"></i>
+           Export to Excel
+         </a>
+       </div>
+       <div class="col-sm-6 col-lg-6 col-xs-12 text-right">
+         <a class="font-green-dark">
+           View all
+           <i class="fa fa-angle-double-right"></i>
+         </a>
+       </div>
+    </div>
+  </div>
+</div>
+<div id="modal-focus" class="modal container fade" tabindex="-1" data-backdrop="static" data-keyboard="false" data-attention-animation="false">
+  <div class="modal-header bg-chula-pink-light">
+      <h4 class="font-white" id="focusType-institution-name"></h4>
+  </div>
+  <div class="modal-body">
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12">
+          <div class="col-md-6 col-lg-6 col-xs-12">
+            <div class="col-md-12 col-lg-12 col-xs-12">
+              <div class="form-group form-md-line-input form-md-floating-label">
+                <select class="form-control" ng-class="{'edited ng-touched':institutionFocusBean.focusTypeId > 0}"
+                        id="focusType" ng-model="institutionFocusBean.focusTypeId"
+                        ng-options="focusType.focusTypeId as focusType.focusTypeDescription  for focusType in masterFocusTypes"
+                        ng-change="doSearchFocusGroup()" is-view-only="P220">
+                    <option value=""></option>
+                </select>
+                <label for="focusTypeId">Type </label>
+              </div>
+            </div>
+            <div class="col-md-12 col-lg-12 col-xs-12">
+              <div class="form-group form-md-line-input form-md-floating-label">
+                <select class="form-control" ng-class="{'edited ng-touched':institutionFocusBean.focusGroupId > 0}"
+                        id="focusGroup" ng-model="institutionFocusBean.focusGroupId"
+                        ng-options="focusGroup.focusGroupId as focusGroup.focusGroupDescription  for focusGroup in masterFocusGroups"
+                        ng-change="doSearchFocusSpecific()" is-view-only="P220">
+                    <option value=""></option>
+                </select>
+                <label for="focusGroupId">Group </label>
+              </div>
+            </div>
+            <div class="col-md-12 col-lg-12 col-xs-12">
+              <div class="form-group form-md-line-input form-md-floating-label">
+                <select class="form-control" ng-class="{'edited ng-touched':institutionFocusBean.focusSpecificId > 0}"
+                        id="focusSpecific" 
+                        ng-options="focusSpecific.focusSpecificId as focusSpecific.focusSpecificDescription  for focusSpecific in masterFocusSpecifics"
+                        ng-model="institutionFocusBean.focusSpecificId" is-view-only="P220">
+                    <option value=""></option>
+                </select>
+                <label for="focusSpecificId">Specific </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-6 col-xs-12">
+            <div class="form-group form-md-line-input form-md-floating-label">
+                <textarea class="form-control" rows="10"
+                          ng-model="institutionFocusBean.note"
+                          ng-class="{'edited ng-touched':institutionFocusBean.note.length > 0}"
+                          is-view-only="P220"></textarea>
+                <label>Note</label>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="modal-footer">
+    <div class="col-sm-6 col-lg-6 col-xs-6 text-left">
+        <button type="button" data-dismiss="modal" class="btn grey-cascade btn-outline"> Back </button>
+      <button type="button" class="btn red btn-outline" ng-click="doDelete()" can-action="P220"> Delete </button>
+    </div>
+    <div class="col-sm-6 col-lg-6 col-xs-6 text-right">
+      <button type="button" class="btn green-dark font-white" ng-click="doSaveFocus()" can-action="P220">Submit</button>
+    </div>
+  </div>
+</div>

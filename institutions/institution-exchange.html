@@ -1,0 +1,194 @@
+<div class="portlet-title tabbable-line">
+  <div class="caption">
+      <i class="icon-bubbles font-dark hide"></i>
+      <span class="caption-subject font-dark bold uppercase">Exchange</span>
+  </div>
+  <div class="actions">
+    <a class="btn btn-circle btn-icon-only green-dark"
+       data-target="#modal-exchange" data-toggle="modal" ng-click="resetModal()"
+       can-action="P270">
+        <i class="fa fa-plus"></i>
+    </a>
+  </div>
+</div>
+<div class="portlet-body">
+  <div class="row">
+    <div class="col-sm-12 col-lg-12 col-xs-12">
+      <table ng-table="ActivityExchangeTable" class="table table-hover table-striped">
+          <thead>
+              <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Type</b></th>
+              <th class="text-center bg-chula-pink-light font-white" width="10%"><b>From</b></th>
+              <th class="text-center bg-chula-pink-light font-white" width="10%"><b>To</b></th>
+              <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Name</b></th>
+              <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Faculty</b></th>
+              <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Degree</b></th>
+              <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Interactive</b></th>
+              <th class="text-center bg-chula-pink-light font-white" width="5%"><b>Edit</b></th>
+          </thead>
+          <tbody>
+              <tr ng-repeat="d in institutionExchangeDatas">
+                  <td class="text-left">{{d.exchangePersonTypeDescription}}</td>
+                  <td class="text-center">{{d.exchangeStartDate | formatDate }}</td>
+                  <td class="text-center">{{d.exchangeEndDate | formatDate }}</td>
+                  <td class="text-left">{{d.fullName }}</td>
+                  <td class="text-left">{{d.chulaMsFaculty.facultyName }}</td>
+                  <td class="text-left">{{d.degreeDescription }}</td>
+                  <td class="text-left">{{d.interactionDescription }}</td>
+                  <td class="text-center">
+                    <a ng-click="initEditInstitutionExchange(d.institutionExchangeId)">
+                      <i class="fa fa-edit "></i>
+                    </a>
+                  </td>
+              </tr>
+          </tbody>
+       </table>
+       <div class="col-sm-6 col-lg-6 col-xs-12 text-left">
+         <a class="font-green-dark">
+           <i class="fa fa-download"></i>
+           Export to Excel
+         </a>
+       </div>
+       <div class="col-sm-6 col-lg-6 col-xs-12 text-right">
+         <a class="font-green-dark">
+           View all
+           <i class="fa fa-angle-double-right"></i>
+         </a>
+       </div>
+    </div>
+  </div>
+</div>
+
+<div id="modal-exchange" class="modal container fade" tabindex="-1" data-backdrop="static" data-keyboard="false" data-attention-animation="false">
+  <input type="hidden" ng-model="institutionExchangeFormBean.institutionExchangeId"/>
+  <div class="modal-header bg-chula-pink-light">
+      <h4 class="font-white" id="exchange-institution-name"></h4>
+  </div>
+  <div class="modal-body">
+    <h4 class="font-chula-pink">Exchange</h4>
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-xs-12">
+        <div class="col-md-6 col-lg-6 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+            <select class="form-control" ng-class="{'edited ng-touched':institutionExchangeFormBean.exchangePersonType.length > 0}"
+                    id="focusType" ng-model="institutionExchangeFormBean.exchangePersonType"
+                    ng-options="key as value for (key,value) in masterPersonTypes"
+                    is-view-only="P270">
+                <option value=""></option>
+            </select>
+            <label for="exchangePersonType">Type </label>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-6 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+              <div class="input-group right-addon">
+                  <input type="text" class="form-control" data-provide="datepicker" id="startDate"
+                         ng-model="institutionExchangeFormBean.startDate" maxlength="10"
+                         ng-class="{'edited ng-touched':institutionExchangeFormBean.startDate.length > 0}"
+                         data-date-format="dd/mm/yyyy"
+                         is-view-only="P270">
+                  <label for="institutionExchangeFormBean.startDate">Start date</label>
+                  <span class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                  </span>
+              </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+            <input type="text" class="form-control" id="exchangeName"
+                   ng-model="institutionExchangeFormBean.exchangeName" maxlength="100" 
+                   ng-class="{'edited ng-touched':institutionExchangeFormBean.exchangeName.length > 0}"
+                   is-view-only="P270">
+            <label for="exchangeName">Name</label>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-6 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+              <div class="input-group right-addon">
+                  <input type="text" class="form-control" data-provide="datepicker" id="endDate"
+                         ng-model="institutionExchangeFormBean.endDate" maxlength="10"
+                         ng-class="{'edited ng-touched':institutionExchangeFormBean.endDate.length > 0}"
+                         data-date-format="dd/mm/yyyy"
+                         is-view-only="P270">
+                  <label for="institutionExchangeFormBean.endDate">End date</label>
+                  <span class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                  </span>
+              </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+              <select class="form-control" ng-class="{'edited ng-touched':institutionExchangeFormBean.facultyId > 0}"
+                  id="facultyId" ng-model="institutionExchangeFormBean.facultyId"
+                  ng-options="faculty.facultyId as faculty.facultyName for faculty in masterFaculties"
+                  is-view-only="P270">
+                  <option value=""></option>
+            </select>
+            <label for="facultyId">Chula Faculty </label>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+              <input type="text" class="form-control" id="exchangeProgram"
+                     ng-model="institutionExchangeFormBean.exchangeProgram" maxlength="100" 
+                     ng-class="{'edited ng-touched':institutionExchangeFormBean.exchangeProgram.length > 0}"
+                     is-view-only="P270">
+            <label for="exchangeProgram">Program </label>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+            <select class="form-control" ng-class="{'edited ng-touched':institutionExchangeFormBean.educationDegree.length > 0}"
+                    id="focusSpecific" ng-model="institutionExchangeFormBean.educationDegree"
+                    ng-options="key as value for (key,value) in masterEducationDegrees"
+                    is-view-only="P270">
+                <option value=""></option>
+            </select>
+            <label for="educationDegree">Degree </label>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+            <select class="form-control" ng-class="{'edited ng-touched':institutionExchangeFormBean.institutionActivityId > 0}"
+                    id="institutionActivityId" ng-model="institutionExchangeFormBean.institutionActivityId"
+                    ng-options="key as value for (key,value) in masterLinkages"
+                    is-view-only="P270">
+                <option value=""></option>
+            </select>
+            <label for="institutionActivityId">Linkage </label>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+            <select class="form-control" ng-class="{'edited ng-touched':institutionExchangeFormBean.interaction.length > 0}"
+                    id="interaction" ng-model="institutionExchangeFormBean.interaction"
+                    ng-options="key as value for (key,value) in masterInteraction"
+                    is-view-only="P270">
+                <option value=""></option>
+            </select>
+            <label for="interaction">Interaction </label>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-12 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+              <textarea class="form-control" rows="3"
+                        ng-model="institutionExchangeFormBean.note"
+                        ng-class="{'edited ng-touched':institutionExchangeFormBean.note.length > 0}"
+                        is-view-only="P270"></textarea>
+              <label>Note</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="col-sm-6 col-lg-6 col-xs-6 text-left">
+      <button type="button" data-dismiss="modal" class="btn grey-cascade btn-outline"> Back </button>
+      <button type="button" class="btn red btn-outline" ng-click="doDelete()" can-action="P270"> Delete </button>
+    </div>
+    <div class="col-sm-6 col-lg-6 col-xs-6 text-right">
+      <button type="button" class="btn green-dark font-white" ng-click="doSaveExchange()" can-action="P270">Submit</button>
+    </div>
+  </div>
+</div>

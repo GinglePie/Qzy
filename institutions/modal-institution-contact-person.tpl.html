@@ -1,0 +1,142 @@
+<div id="modal-contact-person" class="modal container fade" tabindex="-1" data-backdrop="static" data-keyboard="false" data-attention-animation="false">
+  <div class="modal-header bg-chula-pink-light">
+      <h4 class="font-white" id="exchange-institution-name"></h4>
+  </div>
+  <div class="modal-body">
+    <input type="hidden" ng-model="contactPersonFormBean.contactPersonId">
+    <input type="hidden" ng-model="contactPersonFormBean.contactPersonType">
+    <h4 class="font-chula-pink">Contact person</h4>
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-xs-12">
+        <div class="col-md-6 col-lg-6 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+            <input type="text" class="form-control" id="contactPersonFormBean.contactPersonFullName"
+                   ng-model="contactPersonFormBean.contactPersonFullName" maxlength="100" 
+                   ng-class="{'edited ng-touched':contactPersonFormBean.contactPersonFullName.length > 0}"
+                   is-view-only="{{pageCode}}">
+            <label for="contactPersonFullName">Name</label>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+            <input type="text" class="form-control" id="contactPersonFormBean.contactPersonEmail"
+                   ng-model="contactPersonFormBean.contactPersonEmail" maxlength="100" 
+                   ng-class="{'edited ng-touched':contactPersonFormBean.contactPersonEmail.length > 0}"
+                   is-view-only="{{pageCode}}">
+            <label for="contactPersonEmail">E-mail</label>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+            <input type="text" class="form-control" id="contactPersonFormBean.contactPersonNumber"
+                   ng-model="contactPersonFormBean.contactPersonNumber" maxlength="100" 
+                   ng-class="{'edited ng-touched':contactPersonFormBean.contactPersonNumber.length > 0}"
+                   is-view-only="{{pageCode}}">
+            <label for="contactPersonNumber">Contact number</label>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+            <select class="form-control" ng-class="{'edited ng-touched':contactPersonFormBean.facultyId > 0}"
+                    id="facultyId" ng-model="contactPersonFormBean.facultyId"
+                    ng-options="faculty.facultyId as faculty.facultyName for faculty in masterFaculties"
+                    is-view-only="{{pageCode}}">
+                <option value=""></option>
+            </select>
+            <label for="facultyId">Chula Faculty </label>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+            <input type="text" class="form-control" id="contactPersonFormBean.position"
+                   ng-model="contactPersonFormBean.position" maxlength="100" 
+                   ng-class="{'edited ng-touched':contactPersonFormBean.position.length > 0}"
+                   is-view-only="{{pageCode}}">
+            <label for="contactPersonFormBean.position">Position</label>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+            <input type="text" class="form-control" id="contactPersonFormBean.contactPersonFunction"
+                  ng-model="contactPersonFormBean.contactPersonFunction" maxlength="100" 
+                  ng-class="{'edited ng-touched':contactPersonFormBean.contactPersonFunction.length > 0}"
+                  is-view-only="{{pageCode}}">
+            <label for="contactPersonFormBean.contactPersonFunction">Function </label>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-12 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+              <textarea class="form-control" rows="3"
+                        ng-model="contactPersonFormBean.projectName"
+                        ng-class="{'edited ng-touched':contactPersonFormBean.projectName.length > 0}"
+                        is-view-only="{{pageCode}}"></textarea>
+              <label>Project name</label>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-12 col-xs-12">
+          <div class="form-group form-md-checkboxes ">
+              <div class="md-checkbox-inline">
+                  <div class="md-checkbox">
+                      <input type="checkbox" id="contactPersonFormBean.prospect" class="md-check"
+                             ng-class="{'ng-not-empty ng-dirty':true}"
+                             ng-checked="contactPersonFormBean.prospect=='Y'"
+                             ng-model="contactPersonFormBean.prospect" value="Y" 
+                             is-view-only="{{pageCode}}">
+                      <label for="contactPersonFormBean.prospect">
+                          <span></span>
+                          <span class="check"></span>
+                          <span class="box"></span> Prospect
+                      </label>
+                  </div>
+                  <div class="md-checkbox">
+                      <input type="checkbox" id="contactPersonFormBean.research" class="md-check"
+                             ng-class="{'ng-not-empty ng-dirty':true}"
+                             ng-checked="contactPersonFormBean.research=='Y'"
+                             ng-model="contactPersonFormBean.research" value="Y"
+                             is-view-only="{{pageCode}}" >
+                      <label for="contactPersonFormBean.research">
+                          <span></span>
+                          <span class="check"></span>
+                          <span class="box"></span> Research
+                      </label>
+                  </div>
+                  <div class="md-checkbox">
+                      <input type="checkbox" id="contactPersonFormBean.alumnus" class="md-check"
+                             ng-class="{'ng-not-empty ng-dirty':true}"
+                             ng-checked="contactPersonFormBean.alumnus=='Y'"
+                             ng-model="contactPersonFormBean.alumnus" value="Y" 
+                             is-view-only="{{pageCode}}">
+                      <label for="contactPersonFormBean.alumnus">
+                          <span></span>
+                          <span class="check"></span>
+                          <span class="box"></span> Alumnus
+                      </label>
+                  </div>
+                  <div class="md-checkbox">
+                      <input type="checkbox" id="contactPersonFormBean.tbc" class="md-check"
+                             ng-class="{'ng-not-empty ng-dirty':true}"
+                             ng-checked="contactPersonFormBean.tbc=='Y'"
+                             ng-model="contactPersonFormBean.tbc" value="Y" 
+                             is-view-only="{{pageCode}}">
+                      <label for="contactPersonFormBean.tbc">
+                          <span></span>
+                          <span class="check"></span>
+                          <span class="box"></span> TBC
+                      </label>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="col-sm-6 col-lg-6 col-xs-12 text-left">
+        <button type="button" data-dismiss="modal" class="btn grey-cascade btn-outline"> Back </button>
+        <button type="button" class="btn btn-outline red" ng-click="doDeleteContactPerson()" can-action="{{pageCode}}">Delete</button>
+    </div>
+    <div class="col-sm-6 col-lg-6 col-xs-12 text-right">
+        <button type="button" class="btn green-dark font-white" ng-click="doSaveContactPerson()" can-action="{{pageCode}}">Submit</button>
+    </div>
+  </div>
+</div>

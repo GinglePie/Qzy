@@ -1,0 +1,170 @@
+<div class="row">
+  <div class="col-lg-12 col-xs-12 col-sm-12">
+    <div class="portlet light bordered">
+      <div class="portlet-title tabbable-line">
+        <div class="caption">
+          <i class="icon-bubbles font-dark hide"></i>
+          <span class="caption-subject font-dark bold uppercase">Role management</span>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3 col-lg-6 col-lg-offset-3 col-xs-12">
+              <div class="form-group form-md-line-input form-md-floating-label">
+                <input type="text" class="form-control" id="roleName"
+                       ng-model="searchRoleName" maxlength="100" >
+                <label for="roleName">Role name</label>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <button type="button" class="btn bg-chula-pink-light font-white"
+                        ng-click="doSearchRole()">
+                  Search
+                </button>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="portlet light bordered">
+        <div class="portlet-body" style="padding-bottom:70px;">
+          <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12 text-right" style="margin-bottom:10px;">
+            <a class="btn green-dark btn-outline"
+               data-target="#modal-add-edit-role" data-toggle="modal"
+               ng-click="resetModal()">
+                <i class="fa fa-plus-circle "></i>
+                Add Role
+            </a>
+          </div>
+            <table ng-table="RoleTable" class="table table-hover table-striped">
+                <thead>
+                    <th class="text-center bg-chula-pink-light font-white" width="20%"><b>Role name</b></th>
+                    <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Role description</b></th>
+                    <th class="text-center bg-chula-pink-light font-white" width="5%"><b>Edit</b></th>
+                    <th class="text-center bg-chula-pink-light font-white" width="5%"><b>Manage</b></th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="d in $data">
+                        <td class="text-left">{{d.roleName}}</td>
+                        <td class="text-left">{{d.roleDescription}}</td>
+                        <td class="text-center">
+                          <a ng-click="initEditRole(d.roleId)">
+                            <i class="fa fa-edit "></i>
+                          </a>
+                        </td>
+                        <td class="text-center">
+                          <a ng-click="initModalWebPageMapRole(d.roleId)">
+                            <i class="fa fa-cog "></i>
+                          </a>
+                        </td>
+                    </tr>
+                </tbody>
+             </table>
+        </div>
+    </div>
+  </div>
+</div>
+<div id="modal-add-edit-role" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false" data-attention-animation="false">
+    <div class="modal-header">
+        <h4>Add/Edit Role</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <input type="hidden" ng-model="roleFormBean.roleId"/>
+            <div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xs-12">
+              <div class="form-group form-md-line-input form-md-floating-label">
+                <input type="text" class="form-control require" id="roleName"
+                       ng-model="roleFormBean.roleName" maxlength="30"
+                       ng-class="{'edited ng-touched':roleFormBean.roleName.length > 0}">
+                <label for="roleName">Role name </label>
+              </div>
+              <div class="form-group form-md-line-input form-md-floating-label">
+                <input type="text" class="form-control require" id="roleDescription"
+                       ng-model="roleFormBean.roleDescription" maxlength="30"
+                       ng-class="{'edited ng-touched':roleFormBean.roleDescription.length > 0}">
+                <label for="roleDescription">Role description</label>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn grey-cascade btn-outline"> Cancel </button>
+        <button type="button" class="btn green-dark font-white" ng-click="doSaveRole()">Submit</button>
+    </div>
+</div>
+
+<div id="modal-add-edit-webpage-map-role" class="modal container fade" tabindex="-1" data-backdrop="static" data-keyboard="false" data-attention-animation="false">
+    <div class="modal-header">
+        <h4>Role name: {{webPageMapRole_roleName}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 col-xs-12">
+              <table class="table table-hover table-striped">
+                <thead>
+                  <th>Web page name</th>
+                  <th>Can Add/Edit</th>
+                  <th>View only</th>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="webPage in masterWebPages track by $index">
+                      <td class="text-left">
+                        <input type="hidden" ng-model="webPageMapRoleFormBean[$index].webPageMapRoleId"/>
+                        <input type="hidden" ng-model="webPageMapRoleFormBean[$index].roleId"/>
+                        <input type="hidden" ng-model="webPageMapRoleFormBean[$index].webPageId">
+                       {{webPage.webPageName}}
+                      </td>
+                      <td class="text-center">
+                          <div class="md-checkbox">
+                              <input type="checkbox" id="canAddEdit-{{$index}}" class="md-check"
+                                     ng-class="{'ng-not-empty ng-dirty':true}"
+                                     ng-checked="webPageMapRoleFormBean[$index].canAddEdit"
+                                     ng-model="webPageMapRoleFormBean[$index].canAddEdit" value="Y">
+                              <label for="canAddEdit-{{$index}}">
+                                  <span></span>
+                                  <span class="check"></span>
+                                  <span class="box"></span>
+                              </label>
+                          </div>
+                      </td>
+                      <td class="text-center">
+                          <div class="md-checkbox">
+                              <input type="checkbox" id="viewOnly-{{$index}}" class="md-check"
+                                     ng-class="{'ng-not-empty ng-dirty':true}"
+                                     ng-checked="webPageMapRoleFormBean[$index].viewOnly"
+                                     ng-model="webPageMapRoleFormBean[$index].viewOnly" value="Y">
+                              <label for="viewOnly-{{$index}}">
+                                  <span></span>
+                                  <span class="check"></span>
+                                  <span class="box"></span>
+                              </label>
+                          </div>
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- <div class="form-group form-md-checkboxes ">
+                <div class="md-checkbox-list">
+                    <div class="md-checkbox" ng-repeat="webPage in masterWebPages">
+                        <input type="checkbox" id="agreementType-{{agreementType.agreementTypeId}}" class="md-check"
+                                ng-class="{'ng-not-empty ng-dirty':true}"
+                                ng-checked="initialCheckBox(agreementType.agreementTypeId)"
+                                ng-model="agreementType.selected" value="{{agreementType.agreementTypeId}}"
+                                is-view-only="P240" >
+                        <label for="agreementType-{{agreementType.agreementTypeId}}">
+                            <span></span>
+                            <span class="check"></span>
+                            <span class="box"></span> 
+                        </label>
+                    </div>
+                </div>
+              </div> -->
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn grey-cascade btn-outline"> Cancel </button>
+        <button type="button" class="btn green-dark font-white" ng-click="doSaveWebPageMapRole()">Submit</button>
+    </div>
+</div>

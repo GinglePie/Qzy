@@ -1,0 +1,262 @@
+<div class="portlet-body">
+  <div class="row">
+    <div class="col-sm-12 col-lg-12 col-xs-12">
+      <div class="col-sm-4 col-lg-4 col-xs-12">
+        <input type="hidden" ng-model="NetworkMouFormBean.networkMouId"/>
+        <div class="form-group form-md-line-input form-md-floating-label">
+          <select class="form-control" ng-class="{'edited ng-touched':NetworkMouFormBean.networkMouType.length > 0}"
+                  id="NetworkMouFormBean.networkMouType" ng-model="NetworkMouFormBean.networkMouType"
+                  ng-options="key as value for (key, value) in masterNetworkMouTypes">
+                <option value=""></option>
+          </select>
+          <label for="NetworkMouFormBean.networkMouType">Network/MOU type <span class="font-red">*</span></label>
+        </div>
+      </div>
+      <div class="col-sm-4 col-lg-4 col-xs-12">
+        <div class="form-group form-md-line-input form-md-floating-label">
+          <input type="text" class="form-control require" id="NetworkMouFormBean.networkMouName"
+                 ng-model="NetworkMouFormBean.networkMouName" maxlength="100"
+                 ng-class="{'edited ng-touched':NetworkMouFormBean.networkMouName.length > 0}">
+          <label for="NetworkMouFormBean.networkMouName">Network/MOU Name <span class="font-red">*</span></label>
+        </div>
+      </div>
+      <div class="col-sm-4 col-lg-4 col-xs-12">
+        <div class="form-group form-md-line-input form-md-floating-label">
+          <div class="input-group right-addon">
+            <input type="hidden" ng-model="NetworkMouFormBean.networkMouRelatedId"/>
+            <input type="text" class="form-control" id="NetworkMouFormBean.networkMouRelatedName"
+                   ng-model="networkMouRelatedName" maxlength="100"
+                   data-target="#modal-add-edit-activity-exchange-information" data-toggle="modal"
+                   ng-class="{'edited ng-touched':NetworkMouFormBean.networkMouRelatedName.length > 0}" readonly>
+            <label for="NetworkMouFormBean.networkMouRelatedName">Network/MOU related</label>
+            <span class="input-group-addon">
+                <i class="fa fa-search-plus"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 col-lg-4 col-xs-12">
+        <div class="form-group form-md-line-input form-md-floating-label">
+          <input type="text" class="form-control require" id="NetworkMouFormBean.networkMouWeight"
+                 ng-model="NetworkMouFormBean.networkMouWeight" maxlength="5" number-only
+                 ng-class="{'edited ng-touched':NetworkMouFormBean.networkMouWeight > 0}">
+          <label for="NetworkMouFormBean.networkMouWeight">Network/MOU weight </label>
+        </div>
+      </div>
+      <div class="col-sm-4 col-lg-4 col-xs-12">
+        <div class="form-group form-md-line-input form-md-floating-label">
+          <select class="form-control" ng-class="{'edited ng-touched':NetworkMouFormBean.levelOfCooperation.length > 0}"
+                  id="NetworkMouFormBean.levelOfCooperation" ng-model="NetworkMouFormBean.levelOfCooperation"
+                  ng-options="key as value for (key, value) in masterLevelOfCooperations">
+                <option value=""></option>
+          </select>
+          <label for="NetworkMouFormBean.levelOfCooperation">Level of cooperation <span class="font-red">*</span></label>
+        </div>
+      </div>
+      <div class="col-sm-4 col-lg-4 col-xs-12">
+        <div class="form-group form-md-line-input form-md-floating-label">
+          <input type="text" class="form-control require" id="NetworkMouFormBean.totalQuota"
+                 ng-model="NetworkMouFormBean.totalQuota" maxlength="3" number-only
+                 ng-class="{'edited ng-touched':NetworkMouFormBean.totalQuota > 0}">
+          <label for="NetworkMouFormBean.totalQuota">Total quota </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br/>
+<div class="portlet-title tabbable-line">
+  <div class="caption">
+      <i class="icon-bubbles font-dark hide"></i>
+      <span class="caption-subject font-dark bold uppercase">Agreement type</span>
+  </div>
+</div>
+<div class="portlet-body">
+  <div class="row">
+    <div class="col-sm-12 col-lg-12 col-xs-12">
+      <div class="form-group form-md-checkboxes ">
+        <div class="md-checkbox-list" ng-repeat="type in masterAgreementTypes">
+          <div class="md-checkbox">
+            <div class="col-sm-4 col-lg-4 col-xs-12" >
+              <input type="checkbox" id="cb-{{type.agreementTypeId}}" class="md-check"
+                     ng-class="{'ng-not-empty ng-dirty':true}"
+                     ng-checked="initialCheckBox(type.agreementTypeId)"
+                     ng-model="type.selected" value="{{type.agreementTypeId}}" >
+              <label for="cb-{{type.agreementTypeId}}">
+                  <span></span>
+                  <span class="check"></span>
+                  <span class="box"></span> {{type.agreementTypeName}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br/>
+<div class="portlet-title tabbable-line">
+  <div class="caption">
+      <i class="icon-bubbles font-dark hide"></i>
+      <span class="caption-subject font-dark bold uppercase">Duration</span>
+  </div>
+</div>
+<div class="portlet-body">
+  <div class="row">
+    <div class="col-sm-12 col-lg-12 col-xs-12">
+      <div class="col-sm-4 col-lg-4 col-xs-12">
+        <div class="form-group form-md-line-input form-md-floating-label">
+            <div class="input-group right-addon">
+                <input type="text" class="form-control" data-provide="datepicker" id="signDate"
+                       ng-model="NetworkMouFormBean.signDate" maxlength="10"
+                       data-date-format="dd/mm/yyyy"
+                       ng-class="{'edited ng-touched':NetworkMouFormBean.signDate.length > 0}">
+                <label for="NetworkMouFormBean.signDate">Sign date</label>
+                <span class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                </span>
+            </div>
+        </div>
+      </div>
+      <div class="col-sm-4 col-lg-4 col-xs-12">
+        <div class="form-group form-md-line-input form-md-floating-label">
+            <div class="input-group right-addon">
+                <input type="text" class="form-control" data-provide="datepicker" id="startDate"
+                       ng-model="NetworkMouFormBean.startDate" maxlength="10"
+                       data-date-format="dd/mm/yyyy"
+                       ng-class="{'edited ng-touched':NetworkMouFormBean.startDate.length > 0}">
+                <label for="NetworkMouFormBean.startDate">Start date</label>
+                <span class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                </span>
+            </div>
+        </div>
+      </div>
+      <div class="col-sm-4 col-lg-4 col-xs-12">
+        <div class="form-group form-md-line-input form-md-floating-label">
+            <div class="input-group right-addon">
+                <input type="text" class="form-control" data-provide="datepicker" id="expireDate"
+                       ng-model="NetworkMouFormBean.expireDate" maxlength="10"
+                       data-date-format="dd/mm/yyyy"
+                       ng-class="{'edited ng-touched':NetworkMouFormBean.expireDate.length > 0}">
+                <label for="NetworkMouFormBean.expireDate">Expire date</label>
+                <span class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                </span>
+            </div>
+        </div>
+      </div>
+      <div class="col-sm-4 col-lg-4 col-xs-12">
+        <div class="form-group form-md-line-input form-md-floating-label">
+          <input type="text" class="form-control" id="NetworkMouFormBean.yearlyRenew"
+                 ng-model="NetworkMouFormBean.yearlyRenew" maxlength="5" number-only
+                 ng-class="{'edited ng-touched':NetworkMouFormBean.yearlyRenew > 0}">
+          <label for="NetworkMouFormBean.yearlyRenew">Yearly re-new</label>
+        </div>
+      </div>
+      <div class="col-sm-4 col-lg-4 col-xs-12 " style="margin-top:20px">
+        <div class="form-group form-md-checkboxes ">
+            <div class="md-checkbox-list">
+                <div class="md-checkbox">
+                    <input type="checkbox" id="NetworkMouFormBean.isNeverExpire" class="md-check"
+                           ng-class="{'ng-not-empty ng-dirty':true}"
+                           ng-checked="initialCheckBox(group.groupId)"
+                           ng-model="NetworkMouFormBean.isNeverExpire" value="Y" >
+                    <label for="NetworkMouFormBean.isNeverExpire">
+                        <span></span>
+                        <span class="check"></span>
+                        <span class="box"></span> never expire
+                    </label>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="portlet-title tabbable-line">
+    <div class="caption">
+        <i class="icon-bubbles font-dark hide"></i>
+        <span class="caption-subject font-dark bold uppercase">Description</span>
+    </div>
+  </div>
+  <div class="portlet-body">
+    <div class="row">
+      <div class="col-sm-12 col-lg-12 col-xs-12">
+        <div class="form-group form-md-line-input form-md-floating-label">
+            <textarea class="form-control" rows="5"
+                      ng-model="NetworkMouFormBean.description"
+                      ng-class="{'edited ng-touched':NetworkMouFormBean.description.length > 0}"></textarea>
+            <label>Description</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12 col-lg-12 col-xs-12 text-center">
+    <button type="button" class="btn btn-outline red-pink">
+      Back
+    </button>
+    <button type="reset" class="btn btn-outline grey-cascade">
+      Reset
+    </button>
+    <button type="button" class="btn bg-chula-pink-light font-white"
+            ng-click="doSaveInformation()">
+      Submit
+    </button>
+  </div>
+</div>
+<div id="modal-add-edit-activity-exchange-information" class="modal container fade" tabindex="-1"
+     data-backdrop="static" data-keyboard="false" data-attention-animation="false">
+    <div class="modal-header">
+        <h4>Find MOU</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+          <div class="row">
+            <div class="col-sm-6 col-sm-offset-3 col-lg-6 col-lg-offset-3 col-xs-12">
+                <div class="form-group form-md-line-input form-md-floating-label">
+                  <input type="text" class="form-control" id="networkMouName"
+                         ng-model="networkMouName" maxlength="100" >
+                  <label for="networkMouName">Network/MOU name</label>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+              <div class="col-sm-12 text-center">
+                  <button type="button" class="btn bg-chula-pink-light font-white"
+                          ng-click="doSearchMou()">
+                    Search
+                  </button>
+              </div>
+          </div>
+          <br/>
+          <div class="col-sm-12 col-lg-12 col-xs-12">
+            <table ng-table="NetworkMouTable" class="table table-bordered table-hover">
+                <thead>
+                    <th class="text-center bg-chula-pink-light font-white" width="20%"><b>MOU name</b></th>
+                    <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Sign date</b></th>
+                    <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Start date</b></th>
+                    <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Expire date</b></th>
+                    <th class="text-center bg-chula-pink-light font-white" width="5%"><b>Select</b></th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="d in $data">
+                        <td class="text-left">{{d.networkMouName}}</td>
+                        <td class="text-left">{{d.signDate | formatDate}}</td>
+                        <td class="text-left">{{d.startDate | formatDate}}</td>
+                        <td class="text-left">{{d.expireDate | formatDate}}</td>
+                        <td class="text-center">
+                            <button type="button" class="btn green-dark font-white" ng-click="selectedMOU(d)">Select</button>
+                        </td>
+                    </tr>
+                </tbody>
+             </table>
+          </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn grey-cascade btn-outline" ng-click="resetModal()"> Cancel </button>
+        <!-- <button type="button" class="btn green-dark font-white" ng-click="doSaveRegion()">Submit</button> -->
+    </div>
+</div>

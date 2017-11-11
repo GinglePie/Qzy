@@ -1,0 +1,228 @@
+<div class="row">
+  <input type="hidden" ng-model="ActivityExchangePersonFormBean.activityExchangeId" />
+  <div class="col-sm-12 col-lg-12 col-xs-12">
+    <div class="col-sm-12 col-lg-12 col-xs-12 text-right" style="margin-bottom:10px;">
+      <a class="btn grey-cascade btn-outline"
+         data-target="#modal-person" data-toggle="modal"
+         ng-click="initModal()">
+          <i class="fa fa-plus-circle "></i>
+          Add Person
+      </a>
+    </div>
+  </div>
+  <div class="col-sm-12 col-lg-12 col-xs-12">
+    <table ng-table="ActivityExchangePersonTable" class="table table-bordered table-hover">
+      <thead>
+          <th class="text-center bg-chula-pink-light font-white" width="20%"><b>Full name</b></th>
+          <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Degree</b></th>
+          <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Faculty</b></th>
+          <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Institution</b></th>
+          <th class="text-center bg-chula-pink-light font-white" width="5%"><b>Edit</b></th>
+          <th class="text-center bg-chula-pink-light font-white" width="5%"><b>Delete</b></th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="d in $data">
+          <td class="text-left">{{d.chulaMsPrefix.prefixName}}{{d.firstName}} {{d.lastName}}</td>
+          <td class="text-left">{{d.educationDegreeDescription}}</td>
+          <td class="text-left">{{(null==d.chulaMsFaculty)?d.facultyName:d.chulaMsFaculty.facultyName}}</td>
+          <td class="text-left">{{d.chulaMsInstitution.institutionName}}</td>
+          <td class="text-center">
+            <a ng-click="initEditActivityExchangePerson(d.activityExchangePersonId)">
+              <i class="fa fa-edit "></i>
+            </a>
+          </td>
+          <td class="text-center">
+            <a ng-click="doDeleteActivityExchangePerson(d.activityExchangePersonId)">
+              <i class="fa fa-trash font-red"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div id="modal-person" class="modal container fade" tabindex="-1" data-backdrop="static" data-keyboard="false" data-attention-animation="false">
+    <div class="modal-header">
+        <h4>Add/Edit Person</h4>
+    </div>
+    <div class="modal-body" style="padding-bottom:10px;">
+      <div class="row">
+        <div class="col-sm-12 col-lg-12 col-xs-12">
+            <h4><b>Information</b></h4>
+            <div class="col-sm-4 col-lg-4 col-xs-12">
+              <div class="form-group form-md-line-input form-md-floating-label">
+                <select class="form-control" ng-class="{'edited ng-touched':ActivityExchangePersonFormBean.prefixId > 0}"
+                        id="ActivityExchangePersonFormBean.prefixId" ng-model="ActivityExchangePersonFormBean.prefixId"
+                        ng-options="prefix.prefixId as prefix.prefixName for prefix in masterPrefixs">
+                      <option value="0"></option>
+                </select>
+                <label for="ActivityExchangePersonFormBean.prefixId">Prefix <span class="font-red">*</span></label>
+              </div>
+            </div>
+            <div class="col-sm-4 col-lg-4 col-xs-12">
+              <div class="form-group form-md-line-input form-md-floating-label">
+                <input type="text" class="form-control require" id="firstName"
+                       ng-model="ActivityExchangePersonFormBean.firstName" maxlength="30"
+                       ng-class="{'edited ng-touched':ActivityExchangePersonFormBean.firstName.length > 0}">
+                <label for="firstName">First name <span class="font-red">*</span></label>
+              </div>
+            </div>
+            <div class="col-sm-4 col-lg-4 col-xs-12">
+              <div class="form-group form-md-line-input form-md-floating-label">
+                <input type="text" class="form-control require" id="lastName"
+                       ng-model="ActivityExchangePersonFormBean.lastName" maxlength="30"
+                       ng-class="{'edited ng-touched':ActivityExchangePersonFormBean.lastName.length > 0}">
+                <label for="lastName">Last name <span class="font-red">*</span></label>
+              </div>
+            </div>
+            <div class="col-sm-4 col-lg-4 col-xs-12">
+              <div class="form-group form-md-line-input form-md-floating-label">
+                <input type="text" class="form-control require" id="identificationNo"
+                       ng-model="ActivityExchangePersonFormBean.identificationNo" maxlength="13" number-only
+                       ng-class="{'edited ng-touched':ActivityExchangePersonFormBean.identificationNo.length > 0}">
+                <label for="identityNo">Identification No <span class="font-red">*</span></label>
+              </div>
+            </div>
+            <div class="col-sm-4 col-lg-4 col-xs-12">
+              <div class="form-group form-md-line-input form-md-floating-label">
+                <input type="text" class="form-control" id="passportNo"
+                       ng-model="ActivityExchangePersonFormBean.passportNo" maxlength="13"
+                       ng-class="{'edited ng-touched':ActivityExchangePersonFormBean.passportNo.length > 0}">
+                <label for="passportVisa">Passport No</label>
+              </div>
+            </div>
+            <div class="col-sm-4 col-lg-4 col-xs-12">
+              <div class="form-group form-md-line-input form-md-floating-label">
+                <input type="text" class="form-control require" id="nationality"
+                       ng-model="ActivityExchangePersonFormBean.nationality" maxlength="10"
+                       ng-class="{'edited ng-touched':ActivityExchangePersonFormBean.nationality.length > 0}">
+                <label for="nationality">Nationality <span class="font-red">*</span></label>
+              </div>
+            </div>
+            <div class="col-sm-4 col-lg-4 col-xs-12">
+              <div class="form-group form-md-line-input form-md-floating-label">
+                  <div class="input-group right-addon">
+                      <input type="text" class="form-control" data-provide="datepicker" id="birthDate"
+                             data-date-format="dd/mm/yyyy"
+                             ng-model="ActivityExchangePersonFormBean.birthDate" maxlength="10"
+                             ng-class="{'edited ng-touched':ActivityExchangePersonFormBean.birthDate.length > 0}">
+                      <label for="birthDate">Birth date</label>
+                      <span class="input-group-addon">
+                          <i class="fa fa-calendar"></i>
+                      </span>
+                  </div>
+              </div>
+            </div>
+            <div class="col-sm-4 col-lg-4 col-xs-12">
+              <div class="form-group form-md-line-input form-md-floating-label">
+                <select class="form-control" ng-class="{'edited ng-touched':ActivityExchangePersonFormBean.institutionId > 0}"
+                        id="ActivityExchangePersonFormBean.institutionId" ng-model="ActivityExchangePersonFormBean.institutionId"
+                        ng-change="changeFaculty(ActivityExchangePersonFormBean.institutionId)"
+                        ng-options="institution.institutionId as institution.institutionName for institution in masterInstitutions">
+                      <option value="0"></option>
+                </select>
+                <!-- <select class="form-control" id="countryId" ng-model="institutionId" ng-change="changeFaculty()">
+                    <option value="" selected></option>
+                    <option ng-repeat="institution in masterInstitutions" value="{{institution.institutionId}}">{{ institution.institutionName }}</option>
+                </select> -->
+                <label for="institutionId">Institution</label>
+              </div>
+            </div>
+            <div class="col-sm-4 col-lg-4 col-xs-12">
+              <div id="chula" style="display:none">
+                <div class="form-group form-md-line-input form-md-floating-label">
+                  <select class="form-control" id="faculty" ng-model="ActivityExchangePersonFormBean.facultyId">
+                      <option value="" selected></option>
+                      <option ng-repeat="faculty in masterFaculties" value="{{faculty.facultyId}}">{{ faculty.facultyName }}</option>
+                  </select>
+                  <label for="faculty">Faculty</label>
+                </div>
+              </div>
+              <div id="not-chula" style="display:block">
+                <div class="form-group form-md-line-input form-md-floating-label">
+                  <input type="text" class="form-control" id="facultyName"
+                         ng-model="ActivityExchangePersonFormBean.facultyName" maxlength="13"
+                         ng-class="{'edited ng-touched':ActivityExchangePersonFormBean.facultyName.length > 0}">
+                  <label for="faculty">Faculty</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4 col-lg-4 col-xs-12">
+              <div class="form-group form-md-line-input form-md-floating-label">
+                <select class="form-control require" id="educationDegree"
+                        ng-model="ActivityExchangePersonFormBean.educationDegree" ng-class="{'edited ng-touched':ActivityExchangePersonFormBean.educationDegree.length > 0}">
+                    <option value="" selected></option>
+                    <option ng-repeat="(key, value) in masterEducationDegrees" value="{{key}}">{{ value }}</option>
+                </select>
+                <!-- <select class="form-control" id="countryId" ng-model="institutionId" ng-change="changeFaculty()">
+                    <option value="" selected></option>
+                    <option ng-repeat="institution in masterInstitutions" value="{{institution.institutionId}}">{{ institution.institutionName }}</option>
+                </select> -->
+                <label for="educationDegree">Education degree</label>
+              </div>
+            </div>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 col-lg-12 col-xs-12">
+          <h4><b>Address</b></h4>
+          <div class="col-sm-12 col-lg-12 col-xs-12">
+            <div class="form-group form-md-line-input form-md-floating-label">
+              <input type="text" class="form-control require" id="address1"
+                     ng-model="ActivityExchangePersonFormBean.address1" maxlength="200"
+                     ng-class="{'edited ng-touched':ActivityExchangePersonFormBean.address1.length > 0}">
+              <label for="address1">Address 1 <span class="font-red">*</span></label>
+            </div>
+            <div class="form-group form-md-line-input form-md-floating-label">
+              <input type="text" class="form-control require" id="address2"
+                     ng-model="ActivityExchangePersonFormBean.address2" maxlength="200"
+                     ng-class="{'edited ng-touched':ActivityExchangePersonFormBean.address2.length > 0}">
+              <label for="address2">Address 2 </label>
+            </div>
+          </div>
+          <div class="col-sm-4 col-lg-4 col-xs-12">
+            <div class="form-group form-md-line-input form-md-floating-label">
+              <input type="text" class="form-control require" id="phoneNumber"
+                     ng-model="ActivityExchangePersonFormBean.phoneNumber" maxlength="15"
+                     ng-class="{'edited ng-touched':ActivityExchangePersonFormBean.phoneNumber.length > 0}">
+              <label for="phoneNumber">Phone number <span class="font-red">*</span></label>
+            </div>
+          </div>
+          <div class="col-sm-4 col-lg-4 col-xs-12">
+            <div class="form-group form-md-line-input form-md-floating-label">
+              <input type="text" class="form-control" id="email"
+                     ng-model="ActivityExchangePersonFormBean.email" maxlength="50"
+                     ng-class="{'edited ng-touched':ActivityExchangePersonFormBean.email.length > 0}">
+              <label for="email">E-mail</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 col-lg-12 col-xs-12">
+          <h4><b>Emergency contact</b></h4>
+          <div class="col-sm-6 col-lg-6 col-xs-12">
+            <div class="form-group form-md-line-input form-md-floating-label">
+              <input type="text" class="form-control require" id="emergencyContactPersonName"
+                     ng-model="ActivityExchangePersonFormBean.emergencyContactPersonName" maxlength="100"
+                     ng-class="{'edited ng-touched':ActivityExchangePersonFormBean.emergencyContactPersonName.length > 0}">
+              <label for="emergencyContactPersonName">Contact full name <span class="font-red">*</span></label>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-6 col-xs-12">
+            <div class="form-group form-md-line-input form-md-floating-label">
+              <input type="text" class="form-control requie" id="emergencyContactPersonPhone"
+                     ng-model="ActivityExchangePersonFormBean.emergencyContactPersonPhone" maxlength="15"
+                     ng-class="{'edited ng-touched':ActivityExchangePersonFormBean.emergencyContactPersonPhone.length > 0}">
+              <label for="emergencyContactPersonPhone">Contact phone number <span class="font-red">*</span></label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn grey-cascade btn-outline"> Cancel </button>
+        <button type="button" class="btn green-dark font-white" ng-click="doSavePerson()">Submit</button>
+    </div>
+</div>

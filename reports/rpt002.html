@@ -1,0 +1,77 @@
+<div class="row">
+  <div class="col-lg-12 col-xs-12 col-sm-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title tabbable-line">
+                <div class="caption">
+                    <i class="icon-bubbles font-dark hide"></i>
+                    <span class="caption-subject font-dark bold uppercase">รายงานรายนามสัญญา (RPT002)</span>
+                </div>
+            </div>
+             <div class="portlet-body">
+                <div class="row">
+                  <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <div class="form-group form-md-line-input form-md-floating-label">
+                      <select class="form-control" id="countryId" ng-model="countryId"
+                              ng-options="country.countryId as country.countryName for country in masterCountries">>
+                          <option value=""></option>
+                      </select>
+                      <label for="countryId">Country</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <div class="form-group form-md-line-input form-md-floating-label">
+                      <select class="form-control" id="institutionId"
+                              ng-model="institutionId"
+                              ng-options="institution.institutionId as institution.institutionName for institution in masterInstitutions">
+                            <option value=""></option>
+                      </select>
+                      <label for="institutionId">Institution</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <button type="button" class="btn bg-chula-pink-light font-white"
+                                ng-click="doSearch()">
+                          Search
+                        </button>
+                    </div>
+                </div>
+             </div>
+        </div>
+        <div class="portlet light bordered">
+          <div class="portlet-title tabbable-line">
+              <div class="caption">
+                  <i class="icon-bubbles font-dark hide"></i>
+                  <span class="caption-subject font-dark bold uppercase">รายนามสัญญา</span>
+              </div>
+          </div>
+           <div class="portlet-body">
+              <div class="row">
+                <div class="col-md-12 col-lg-12 col-xs-12">
+                  <table ng-table="rpt002Table" class="table table-bordered table-hover">
+                      <thead>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Country</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>University</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Sign date</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Expire date</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Level of Cooperation</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Type of Cooperation</b></th>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="d in $data">
+                              <td class="text-left">{{d.countryName}}</td>
+                              <td class="text-left">{{d.institutionName}}</td>
+                              <td class="text-center">{{d.signDateFormated}}</td>
+                              <td class="text-center">{{d.expireDateFormated}}</td>
+                              <td class="text-left">{{d.levelOfCooperation}}</td>
+                              <td class="text-left">{{d.typeOfCooperation}}</td>
+                          </tr>
+                      </tbody>
+                   </table>
+                </div>
+              </div>
+           </div>
+        </div>
+    </div>
+</div>

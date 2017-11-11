@@ -1,0 +1,106 @@
+<div class="row">
+  <div class="col-lg-12 col-xs-12 col-sm-12">
+    <div class="portlet light bordered">
+      <div class="portlet-title tabbable-line">
+        <div class="caption">
+          <i class="icon-bubbles font-dark hide"></i>
+          <span class="caption-subject font-dark bold uppercase">User management</span>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3 col-lg-6 col-lg-offset-3 col-xs-12">
+              <div class="form-group form-md-line-input form-md-floating-label">
+                <input type="text" class="form-control" id="searchUserFullName"
+                       ng-model="userFormBean.searchUserFullName" maxlength="100" >
+                <label for="searchUserFullName">User full name</label>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <button type="button" class="btn bg-chula-pink-light font-white"
+                        ng-click="doSearchUser()">
+                  Search
+                </button>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="portlet light bordered">
+        <div class="portlet-body" style="padding-bottom:70px;">
+          <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12 text-right" style="margin-bottom:10px;">
+            <a class="btn green-dark btn-outline"
+               data-target="#modal-add-edit-user" data-toggle="modal"
+               ng-click="resetModal()">
+                <i class="fa fa-plus-circle "></i>
+                Add User
+            </a>
+          </div>
+            <table ng-table="UserTable" class="table table-bordered table-hover">
+                <thead>
+                    <th class="text-center bg-chula-pink-light font-white" width="20%"><b>User full name</b></th>
+                    <th class="text-center bg-chula-pink-light font-white" width="10%"><b>User login name</b></th>
+                    <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Role</b></th>
+                    <th class="text-center bg-chula-pink-light font-white" width="5%"><b>Edit</b></th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="d in $data">
+                        <td class="text-left">{{d.fullName}}</td>
+                        <td class="text-left">{{d.userLoginName}}</td>
+                        <td class="text-left">{{d.chulaMsRole.roleDescription}}</td>
+                        <td class="text-center">
+                          <a ng-click="initEditUser(d.userId)">
+                            <i class="fa fa-edit "></i>
+                          </a>
+                        </td>
+                    </tr>
+                </tbody>
+             </table>
+        </div>
+    </div>
+  </div>
+</div>
+<div id="modal-add-edit-user" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false" data-attention-animation="false">
+    <div class="modal-header">
+        <h4>Add/Edit User</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <input type="hidden" ng-model="userFormBean.userId"/>
+            <div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xs-12">
+              <div class="form-group form-md-line-input form-md-floating-label">
+                <input type="text" class="form-control require" id="fullName"
+                       ng-model="userFormBean.fullName" maxlength="30"
+                       ng-class="{'edited ng-touched':userFormBean.fullName.length > 0}">
+                <label for="fullName">User full name <span class="font-red">*</span></label>
+              </div>
+              <div class="form-group form-md-line-input form-md-floating-label">
+                <input type="text" class="form-control require" id="userLoginName"
+                       ng-model="userFormBean.userLoginName" maxlength="30"
+                       ng-class="{'edited ng-touched':userFormBean.userLoginName.length > 0}">
+                <label for="userLoginName">User login name <span class="font-red">*</span></label>
+              </div>
+              <div class="form-group form-md-line-input form-md-floating-label">
+                <input type="text" class="form-control" id="email"
+                       ng-model="userFormBean.email" maxlength="30"
+                       ng-class="{'edited ng-touched':userFormBean.email.length > 0}">
+                <label for="email">E-mail</label>
+              </div>
+              <div class="form-group form-md-line-input form-md-floating-label">
+                <select class="form-control" ng-class="{'edited ng-touched':userFormBean.roleId > 0}"
+                      id="roleId" ng-model="userFormBean.roleId"
+                      ng-options="role.roleId as role.roleDescription for role in masterRoles"
+                      is-view-only="P250">
+                      <option value=""></option>
+                </select>
+                <label for="personType">Role</label>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn grey-cascade btn-outline"> Cancel </button>
+        <button type="button" class="btn green-dark font-white" ng-click="doSaveUser()">Submit</button>
+    </div>
+</div>

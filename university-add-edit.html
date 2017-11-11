@@ -1,0 +1,546 @@
+<div class="row">
+  <div class="col-lg-12 col-xs-12 col-sm-12">
+      <input type="hidden" id="institutionId"/>
+      <div class="portlet light bordered" ng-controller="UniversityAddEditController">
+        <div class="portlet-title tabbable-line">
+            <div class="caption">
+                <i class="icon-bubbles font-dark hide"></i>
+                <span class="caption-subject font-dark bold uppercase">General Infomation</span>
+            </div>
+        </div>
+         <div class="portlet-body">
+            <div class="row">
+              <div class="col-sm-12 col-lg-12 col-xs-12">
+                  <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <div class="form-group form-md-line-input form-md-floating-label">
+                      <input type="text" class="form-control require" id="fullName"
+                             ng-model="institutionBean.fullName"
+                             ng-class="{'edited ng-touched':institutionBean.fullName.length > 0}">
+                      <label for="fullName">Full Name </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <div class="form-group form-md-line-input form-md-floating-label">
+                      <select class="form-control" ng-class="{'edited ng-touched':institutionBean.countryId > 0}"
+                              id="countryId" ng-model="institutionBean.countryId"
+                              ng-options="country.countryId as country.countryName for country in masterCountries">
+                            <option value="0"></option>
+                      </select>
+                      <label for="countryId">Country </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <div class="form-group form-md-line-input form-md-floating-label">
+                      <input type="text" class="form-control" id="searchTerm"
+                             ng-model="institutionBean.searchTerm" maxlength="100"
+                             ng-class="{'edited ng-touched':institutionBean.searchTerm.length > 0}">
+                      <label for="searchTerm">Search term</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <div class="form-group form-md-line-input form-md-floating-label">
+                      <select class="form-control require" id="institutionType"
+                              ng-model="institutionBean.institutionType"
+                              ng-class="{'edited ng-touched':institutionBean.institutionType.length > 0}">
+                          <option value="" selected></option>
+                          <option ng-repeat="(key, value) in masterInstitutionTypes" value="{{key}}">{{ value }}</option>
+                      </select>
+                      <label for="institutionType">Type </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-lg-12 col-xs-12">
+                    <div class="form-group form-md-line-input form-md-floating-label">
+                        <textarea class="form-control" rows="5"
+                                  ng-model="institutionBean.potentialArea"
+                                  ng-class="{'edited ng-touched':institutionBean.potentialArea.length > 0}"></textarea>
+                        <label>Potential Area</label>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 col-lg-12 col-xs-12 text-center">
+                <button type="button" class="btn bg-chula-pink-light font-white"
+                        ng-click="doSaveInstitution()">
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="portlet light bordered" ng-controller="FocusAddEditController">
+          <div class="portlet-title tabbable-line">
+            <div class="caption">
+                <i class="icon-bubbles font-dark hide"></i>
+                <span class="caption-subject font-dark bold uppercase">Focus</span>
+            </div>
+            <div class="actions">
+              <a class="btn btn-circle btn-icon-only green-dark"
+                 data-target="#modal-focus" data-toggle="modal" ng-click="resetModal()">
+                  <i class="fa fa-plus"></i>
+              </a>
+            </div>
+            <div id="modal-focus" class="modal container fade" tabindex="-1" data-backdrop="static" data-keyboard="false" data-attention-animation="false">
+              <div class="modal-header bg-chula-pink-light">
+                  <h4 class="font-white" id="focusType-institution-name"></h4>
+              </div>
+              <div class="modal-body">
+                  <div class="row">
+                    <div class="col-md-12 col-lg-12 col-xs-12">
+                      <div class="col-md-6 col-lg-6 col-xs-12">
+                        <div class="col-md-12 col-lg-12 col-xs-12">
+                          <div class="form-group form-md-line-input form-md-floating-label">
+                            <select class="form-control" ng-class="{'edited ng-touched':institutionFocusBean.focusTypeId > 0}"
+                                    id="focusType" ng-model="institutionFocusBean.focusTypeId"
+                                    ng-change="doSearchFocusGroup()">
+                                <option value="" selected></option>
+                                <option ng-repeat="focusType in masterFocusTypes" value="{{focusType.focusTypeId}}">{{ focusType.focusTypeDescription }}</option>
+                            </select>
+                            <label for="focusTypeId">Type </label>
+                          </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12 col-xs-12">
+                          <div class="form-group form-md-line-input form-md-floating-label">
+                            <select class="form-control" ng-class="{'edited ng-touched':institutionFocusBean.focusGroupId > 0}"
+                                    id="focusGroup" ng-model="institutionFocusBean.focusGroupId"
+                                    ng-change="doSearchFocusSpecific()">
+                                <option value="" selected></option>
+                                <option ng-repeat="focusGroup in masterFocusGroups" value="{{focusGroup.focusGroupId}}">{{ focusGroup.focusGroupDescription }}</option>
+                            </select>
+                            <label for="focusGroupId">Group </label>
+                          </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12 col-xs-12">
+                          <div class="form-group form-md-line-input form-md-floating-label">
+                            <select class="form-control" ng-class="{'edited ng-touched':institutionFocusBean.focusSpecificId > 0}"
+                                    id="focusSpecific" ng-model="institutionFocusBean.focusSpecificId">
+                                <option value="" selected></option>
+                                <option ng-repeat="focusSpecific in masterFocusSpecifics" value="{{focusSpecific.focusSpecificId}}">{{ focusSpecific.focusSpecificDescription }}</option>
+                            </select>
+                            <label for="focusSpecificId">Specific </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-lg-6 col-xs-12">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                            <textarea class="form-control" rows="10"
+                                      ng-model="institutionFocusBean.note"
+                                      ng-class="{'edited ng-touched':institutionFocusBean.note.length > 0}"></textarea>
+                            <label>Note</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" data-dismiss="modal" class="btn grey-cascade btn-outline"> Cancel </button>
+                  <button type="button" class="btn green-dark font-white" ng-click="doSaveFocus()">Submit</button>
+              </div>
+            </div>
+          </div>
+          <div class="portlet-body">
+            <div class="row">
+              <div class="col-sm-12 col-lg-12 col-xs-12">
+                <table ng-table="FocusTable" class="table table-hover table-striped">
+                    <thead>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Focus Type</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Focus Group</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Focus Specific</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Status</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Note</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="5%"><b>Edit</b></th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="d in institutionFocusDatas">
+                            <td class="text-left">{{d.chulaMsFocusType.focusTypeDescription}}</td>
+                            <td class="text-left">{{d.chulaMsFocusGroup.focusGroupDescription }}</td>
+                            <td class="text-left">{{ null==d.chulaMsFocusSpecific?"":d.chulaMsFocusSpecific.focusSpecificDescription }}</td>
+                            <td class="text-left">{{d.institutionFocusStatus }}</td>
+                            <td class="text-left">{{d.institutionFocusNote }}</td>
+                            <td class="text-center">
+                              <a ng-click="initEditActivityExchange(d.activityExchangeId)">
+                                <i class="fa fa-edit "></i>
+                              </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                 </table>
+                 <div class="col-sm-6 col-lg-6 col-xs-12 text-left">
+                   <a class="font-green-dark">
+                     <i class="fa fa-download"></i>
+                     Export to Excel
+                   </a>
+                 </div>
+                 <div class="col-sm-6 col-lg-6 col-xs-12 text-right">
+                   <a class="font-green-dark">
+                     View all
+                     <i class="fa fa-angle-double-right"></i>
+                   </a>
+                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="portlet light bordered">
+          <div class="portlet-title tabbable-line">
+            <div class="caption">
+                <i class="icon-bubbles font-dark hide"></i>
+                <span class="caption-subject font-dark bold uppercase">Ranking</span>
+            </div>
+            <div class="actions">
+              <a class="btn btn-circle btn-icon-only green-dark" ui-sref="site.university-add-edit">
+                  <i class="fa fa-plus"></i>
+              </a>
+            </div>
+          </div>
+          <div class="portlet-body">
+            <div class="row">
+              <div class="col-sm-12 col-lg-12 col-xs-12">
+                <table ng-table="ActivityExchangeTable" class="table table-bordered table-hover table-strip">
+                    <thead>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Name</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>2017</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>2016</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>2015</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>2014</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="5%"><b>Edit</b></th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="d in $data">
+                            <td class="text-left">{{d.activityName}}</td>
+                            <td class="text-center">{{d.startDate | formatDate }}</td>
+                            <td class="text-center">{{d.endDate | formatDate }}</td>
+                            <td class="text-left">{{d.chulaMsAgreementType.agreementTypeName }}</td>
+                            <td class="text-left">{{d.chulaMsInstitution.institutionName }}</td>
+                            <td class="text-center">
+                              <a ng-click="initEditActivityExchange(d.activityExchangeId)">
+                                <i class="fa fa-edit "></i>
+                              </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                 </table>
+                 <div class="col-sm-6 col-lg-6 col-xs-12 text-left">
+                   <a class="font-green-dark">
+                     <i class="fa fa-download"></i>
+                     Export to Excel
+                   </a>
+                 </div>
+                 <div class="col-sm-6 col-lg-6 col-xs-12 text-right">
+                   <a class="font-green-dark">
+                     View all
+                     <i class="fa fa-angle-double-right"></i>
+                   </a>
+                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="portlet light bordered">
+          <div class="portlet-title tabbable-line">
+            <div class="caption">
+                <i class="icon-bubbles font-dark hide"></i>
+                <span class="caption-subject font-dark bold uppercase">Relationship</span>
+            </div>
+            <div class="actions">
+              <a class="btn btn-circle btn-icon-only green-dark" ui-sref="site.university-add-edit">
+                  <i class="fa fa-plus"></i>
+              </a>
+            </div>
+          </div>
+          <div class="portlet-body">
+            <div class="row">
+              <div class="col-sm-12 col-lg-12 col-xs-12">
+                <table ng-table="ActivityExchangeTable" class="table table-bordered table-hover table-strip">
+                    <thead>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Name</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Type</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>From</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>To</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Level</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Faculty</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="5%"><b>Edit</b></th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="d in $data">
+                            <td class="text-left">{{d.activityName}}</td>
+                            <td class="text-center">{{d.startDate | formatDate }}</td>
+                            <td class="text-center">{{d.endDate | formatDate }}</td>
+                            <td class="text-left">{{d.chulaMsAgreementType.agreementTypeName }}</td>
+                            <td class="text-left">{{d.chulaMsInstitution.institutionName }}</td>
+                            <td class="text-left">{{d.chulaMsInstitution.institutionName }}</td>
+                            <td class="text-center">
+                              <a ng-click="initEditActivityExchange(d.activityExchangeId)">
+                                <i class="fa fa-edit "></i>
+                              </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                 </table>
+                 <div class="col-sm-6 col-lg-6 col-xs-12 text-left">
+                   <a class="font-green-dark">
+                     <i class="fa fa-download"></i>
+                     Export to Excel
+                   </a>
+                 </div>
+                 <div class="col-sm-6 col-lg-6 col-xs-12 text-right">
+                   <a class="font-green-dark">
+                     View all
+                     <i class="fa fa-angle-double-right"></i>
+                   </a>
+                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="portlet light bordered">
+          <div class="portlet-title tabbable-line">
+            <div class="caption">
+                <i class="icon-bubbles font-dark hide"></i>
+                <span class="caption-subject font-dark bold uppercase">Oppotunity</span>
+            </div>
+            <div class="actions">
+              <a class="btn btn-circle btn-icon-only green-dark" ui-sref="site.university-add-edit">
+                  <i class="fa fa-plus"></i>
+              </a>
+            </div>
+          </div>
+          <div class="portlet-body">
+            <div class="row">
+              <div class="col-sm-12 col-lg-12 col-xs-12">
+                <table ng-table="ActivityExchangeTable" class="table table-bordered table-hover table-strip">
+                    <thead>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Name</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Type</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Priority</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Level</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Faculty</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="5%"><b>Edit</b></th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="d in $data">
+                            <td class="text-left">{{d.activityName}}</td>
+                            <td class="text-center">{{d.startDate | formatDate }}</td>
+                            <td class="text-center">{{d.endDate | formatDate }}</td>
+                            <td class="text-left">{{d.chulaMsAgreementType.agreementTypeName }}</td>
+                            <td class="text-left">{{d.chulaMsInstitution.institutionName }}</td>
+                            <td class="text-center">
+                              <a ng-click="initEditActivityExchange(d.activityExchangeId)">
+                                <i class="fa fa-edit "></i>
+                              </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                 </table>
+                 <div class="col-sm-6 col-lg-6 col-xs-12 text-left">
+                   <a class="font-green-dark">
+                     <i class="fa fa-download"></i>
+                     Export to Excel
+                   </a>
+                 </div>
+                 <div class="col-sm-6 col-lg-6 col-xs-12 text-right">
+                   <a class="font-green-dark">
+                     View all
+                     <i class="fa fa-angle-double-right"></i>
+                   </a>
+                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="portlet light bordered">
+          <div class="portlet-title tabbable-line">
+            <div class="caption">
+                <i class="icon-bubbles font-dark hide"></i>
+                <span class="caption-subject font-dark bold uppercase">Recent Activities</span>
+            </div>
+            <div class="actions">
+              <a class="btn btn-circle btn-icon-only green-dark" ui-sref="site.university-add-edit">
+                  <i class="fa fa-plus"></i>
+              </a>
+            </div>
+          </div>
+          <div class="portlet-body">
+            <div class="row">
+              <div class="col-sm-12 col-lg-12 col-xs-12">
+                <table ng-table="ActivityExchangeTable" class="table table-bordered table-hover table-strip">
+                    <thead>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>From</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>To</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="30%"><b>Detail</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="5%"><b>Edit</b></th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="d in $data">
+                            <td class="text-left">{{d.activityName}}</td>
+                            <td class="text-center">{{d.startDate | formatDate }}</td>
+                            <td class="text-center">{{d.endDate | formatDate }}</td>
+                            <td class="text-center">
+                              <a ng-click="initEditActivityExchange(d.activityExchangeId)">
+                                <i class="fa fa-edit "></i>
+                              </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                 </table>
+                 <div class="col-sm-6 col-lg-6 col-xs-12 text-left">
+                   <a class="font-green-dark">
+                     <i class="fa fa-download"></i>
+                     Export to Excel
+                   </a>
+                 </div>
+                 <div class="col-sm-6 col-lg-6 col-xs-12 text-right">
+                   <a class="font-green-dark">
+                     View all
+                     <i class="fa fa-angle-double-right"></i>
+                   </a>
+                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="portlet light bordered">
+          <div class="portlet-title tabbable-line">
+            <div class="caption">
+                <i class="icon-bubbles font-dark hide"></i>
+                <span class="caption-subject font-dark bold uppercase">Exchange</span>
+            </div>
+            <div class="actions">
+              <a class="btn btn-circle btn-icon-only green-dark" ui-sref="site.university-add-edit">
+                  <i class="fa fa-plus"></i>
+              </a>
+            </div>
+          </div>
+          <div class="portlet-body">
+            <div class="row">
+              <div class="col-sm-12 col-lg-12 col-xs-12">
+                <table ng-table="ActivityExchangeTable" class="table table-bordered table-hover table-strip">
+                    <thead>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Type</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>From</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>To</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Name</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Faculty</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Degree</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Interactive</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="5%"><b>Edit</b></th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="d in $data">
+                            <td class="text-left">{{d.activityName}}</td>
+                            <td class="text-center">{{d.startDate | formatDate }}</td>
+                            <td class="text-center">{{d.endDate | formatDate }}</td>
+                            <td class="text-left">{{d.chulaMsAgreementType.agreementTypeName }}</td>
+                            <td class="text-left">{{d.chulaMsInstitution.institutionName }}</td>
+                            <td class="text-left">{{d.chulaMsInstitution.institutionName }}</td>
+                            <td class="text-left">{{d.chulaMsInstitution.institutionName }}</td>
+                            <td class="text-center">
+                              <a ng-click="initEditActivityExchange(d.activityExchangeId)">
+                                <i class="fa fa-edit "></i>
+                              </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                 </table>
+                 <div class="col-sm-6 col-lg-6 col-xs-12 text-left">
+                   <a class="font-green-dark">
+                     <i class="fa fa-download"></i>
+                     Export to Excel
+                   </a>
+                 </div>
+                 <div class="col-sm-6 col-lg-6 col-xs-12 text-right">
+                   <a class="font-green-dark">
+                     View all
+                     <i class="fa fa-angle-double-right"></i>
+                   </a>
+                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-lg-6 col-xs-12">
+            <div class="portlet light bordered">
+              <div class="portlet-title tabbable-line">
+                <div class="caption">
+                    <i class="icon-bubbles font-dark hide"></i>
+                    <span class="caption-subject font-dark bold uppercase">Internal Contact Person</span>
+                </div>
+                <div class="actions">
+                  <a class="btn btn-circle btn-icon-only green-dark" ui-sref="site.university-add-edit">
+                      <i class="fa fa-plus"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="portlet-body">
+                <div class="row">
+                  <div class="col-sm-12 col-lg-12 col-xs-12">
+                    <table ng-table="ActivityExchangeTable" class="table table-bordered table-hover table-strip">
+                        <thead>
+                            <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Name</b></th>
+                            <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Faculty</b></th>
+                            <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Project</b></th>
+                            <th class="text-center bg-chula-pink-light font-white" width="5%"><b>Edit</b></th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="d in $data">
+                                <td class="text-left">{{d.activityName}}</td>
+                                <td class="text-center">{{d.startDate | formatDate }}</td>
+                                <td class="text-center">{{d.endDate | formatDate }}</td>
+                                <td class="text-center">
+                                  <a ng-click="initEditActivityExchange(d.activityExchangeId)">
+                                    <i class="fa fa-edit "></i>
+                                  </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-6 col-xs-12">
+            <div class="portlet light bordered">
+              <div class="portlet-title tabbable-line">
+                <div class="caption">
+                    <i class="icon-bubbles font-dark hide"></i>
+                    <span class="caption-subject font-dark bold uppercase">External Contact Person</span>
+                </div>
+                <div class="actions">
+                  <a class="btn btn-circle btn-icon-only green-dark" ui-sref="site.university-add-edit">
+                      <i class="fa fa-plus"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="portlet-body">
+                <div class="row">
+                  <div class="col-sm-12 col-lg-12 col-xs-12">
+                    <table ng-table="ActivityExchangeTable" class="table table-bordered table-hover table-strip">
+                        <thead>
+                            <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Name</b></th>
+                            <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Faculty</b></th>
+                            <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Project</b></th>
+                            <th class="text-center bg-chula-pink-light font-white" width="5%"><b>Edit</b></th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="d in $data">
+                                <td class="text-left">{{d.activityName}}</td>
+                                <td class="text-center">{{d.startDate | formatDate }}</td>
+                                <td class="text-center">{{d.endDate | formatDate }}</td>
+                                <td class="text-center">
+                                  <a ng-click="initEditActivityExchange(d.activityExchangeId)">
+                                    <i class="fa fa-edit "></i>
+                                  </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>

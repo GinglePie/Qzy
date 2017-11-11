@@ -1,0 +1,77 @@
+<div class="portlet-title tabbable-line">
+  <div class="caption">
+    <i class="icon-bubbles font-dark hide"></i>
+    <span class="caption-subject font-dark bold uppercase">General Infomation</span>
+  </div>
+</div>
+<div class="portlet-body">
+  <div class="row">
+    <div class="col-sm-12 col-lg-12 col-xs-12">
+      <div class="col-sm-6 col-lg-6 col-xs-12">
+        <div class="form-group form-md-line-input form-md-floating-label">
+          <input type="text" class="form-control require" id="fullName"
+                 ng-model="institutionBean.fullName"
+                 ng-class="{'edited ng-touched':institutionBean.fullName.length > 0}"
+                 is-view-only="P210">
+          <label for="fullName">Full Name </label>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-6 col-xs-12">
+        <div class="form-group form-md-line-input form-md-floating-label">
+          <select class="form-control " ng-class="{'edited ng-touched':institutionBean.countryId > 0}" id="countryId"
+                  ng-model="institutionBean.countryId"
+                  ng-options="country.countryId as country.countryName for country in masterCountries"
+                  is-view-only="P210">
+                  <option value="0"></option>
+            </select>
+          <label for="countryId">Country </label>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-6 col-xs-12">
+        <div class="form-group form-md-line-input form-md-floating-label">
+          <input type="text" class="form-control" id="searchTerm"
+                 ng-model="institutionBean.searchTerm" maxlength="100"
+                 ng-class="{'edited ng-touched':institutionBean.searchTerm.length > 0}"
+                 is-view-only="P210">
+          <label for="searchTerm">Search term</label>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-6 col-xs-12">
+        <div class="form-group form-md-line-input form-md-floating-label">
+          <select class="form-control require" id="institutionType"
+                  ng-model="institutionBean.institutionType"
+                  ng-class="{'edited ng-touched':institutionBean.institutionType.length > 0}"
+                  is-view-only="P210">
+                <option value="" selected></option>
+                <option ng-repeat="(key, value) in masterInstitutionTypes" value="{{key}}">{{ value }}</option>
+            </select>
+          <label for="institutionType">Type </label>
+        </div>
+      </div>
+      <div class="col-sm-12 col-lg-12 col-xs-12">
+        <div class="form-group form-md-line-input form-md-floating-label">
+          <textarea class="form-control" rows="5"
+                    ng-model="institutionBean.potentialArea"
+                    ng-class="{'edited ng-touched':institutionBean.potentialArea.length > 0}"
+                    is-view-only="P210"></textarea>
+          <label>Potential Area</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-lg-12 col-xs-12">
+      <div class="col-sm-6 col-lg-6 col-xs-6 text-left">
+        <button type="button" class="btn grey-cascade btn-outline" ng-click="goToPage('site.main-search')">
+          Back
+        </button>
+        <button type="button" class="btn red btn-outline" ng-click="doDeleteInstitution()" can-action="P210" has-authority="ADMIN">Delete</button>
+      </div>
+      <div class="col-sm-6 col-lg-6 col-xs-6 text-right">
+        <button type="button" class="btn bg-chula-pink-light font-white" ng-click="doSaveInstitution()" can-action="P210">
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,180 @@
+<div class="row">
+  <div class="col-lg-12 col-xs-12 col-sm-12">
+    <div class="portlet light bordered">
+      <div class="portlet-title tabbable-line">
+          <div class="caption">
+              <i class="icon-bubbles font-dark hide"></i>
+              <span class="caption-subject font-dark bold uppercase">Add/Edit Instruction/Research</span>
+          </div>
+      </div>
+      <div class="portlet-body">
+        <div class="row">
+          <div class="col-sm-12 col-lg-12 col-xs-12">
+            <input type="hidden" ng-model="ActivityInstructionResearchFormBean.activityInstructionResearchId"/>
+            <div class="col-sm-6 col-lg-6 col-xs-12">
+              <div class="form-group form-md-line-input form-md-floating-label">
+                <select class="form-control" ng-class="{'edited ng-touched':ActivityInstructionResearchFormBean.prefixId > 0}"
+                        id="ActivityInstructionResearchFormBean.prefixId" ng-model="ActivityInstructionResearchFormBean.prefixId"
+                        ng-options="prefix.prefixId as prefix.prefixName for prefix in masterPrefixes">
+                      <option value=""></option>
+                </select>
+                <label for="prefixId">Prefix</label>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-6 col-xs-12">
+              <div class="form-group form-md-line-input form-md-floating-label">
+                <input type="text" class="form-control" id="fullName"
+                       ng-class="{'edited ng-touched':ActivityInstructionResearchFormBean.fullName.length > 0}"
+                       ng-model="ActivityInstructionResearchFormBean.fullName" maxlength="100" >
+                <label for="fullName">Full Name </label>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-6 col-xs-12">
+              <div class="form-group form-md-radios">
+                  <label>Gender</label>
+                  <div class="md-radio-inline">
+                      <div class="md-radio">
+                          <input type="radio" id="genderMale" name="rd-gender"
+                                 ng-model="ActivityInstructionResearchFormBean.gender"
+                                 ng-value="'M'"
+                                 class="md-gender" checked>
+                          <label for="genderMale">
+                              <span></span>
+                              <span class="check"></span>
+                              <span class="box"></span> Male
+                          </label>
+                      </div>
+                      <div class="md-radio">
+                          <input type="radio" id="genderFemale" name="rd-gender"
+                                 ng-model="ActivityInstructionResearchFormBean.gender"
+                                 ng-value="'F'"
+                                 class="md-gender">
+                          <label for="genderFemale">
+                              <span></span>
+                              <span class="check"></span>
+                              <span class="box"></span> Female
+                          </label>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-6 col-xs-12">
+              <div class="form-group form-md-radios">
+                  <label>Inbound/Outbound</label>
+                  <div class="md-radio-inline">
+                      <div class="md-radio">
+                          <input type="radio" id="inbound" name="rd-inbound-outbound"
+                                 ng-model="ActivityInstructionResearchFormBean.inboundOutbound"
+                                 ng-value="'inbound'"
+                                 class="md-radiobtn" checked>
+                          <label for="inbound">
+                              <span></span>
+                              <span class="check"></span>
+                              <span class="box"></span> Inbound
+                          </label>
+                      </div>
+                      <div class="md-radio">
+                          <input type="radio" id="outbound" name="rd-inbound-outbound"
+                                 ng-model="ActivityInstructionResearchFormBean.inboundOutbound"
+                                 ng-value="'outbound'"
+                                 class="md-radiobtn">
+                          <label for="outbound">
+                              <span></span>
+                              <span class="check"></span>
+                              <span class="box"></span> Outbound
+                          </label>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-6 col-xs-12">
+              <div class="form-group form-md-line-input form-md-floating-label">
+                  <div class="input-group right-addon">
+                      <input type="text" class="form-control" data-provide="datepicker" id="startDate"
+                             ng-model="ActivityInstructionResearchFormBean.startDate" maxlength="10"
+                             ng-class="{'edited ng-touched':ActivityInstructionResearchFormBean.startDate.length > 0}"
+                             data-date-format="dd/mm/yyyy">
+                      <label for="ActivityInstructionResearchFormBean.startDate">Start date</label>
+                      <span class="input-group-addon">
+                          <i class="fa fa-calendar"></i>
+                      </span>
+                  </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-6 col-xs-12">
+              <div class="form-group form-md-line-input form-md-floating-label">
+                  <div class="input-group right-addon">
+                      <input type="text" class="form-control" data-provide="datepicker" id="endDate"
+                             ng-model="ActivityInstructionResearchFormBean.endDate" maxlength="10"
+                             ng-class="{'edited ng-touched':ActivityInstructionResearchFormBean.endDate.length > 0}"
+                             data-date-format="dd/mm/yyyy">
+                      <label for="ActivityInstructionResearchFormBean.endDate">End date</label>
+                      <span class="input-group-addon">
+                          <i class="fa fa-calendar"></i>
+                      </span>
+                  </div>
+              </div>
+            </div>
+
+            <div class="col-sm-12 col-lg-12 col-xs-12">
+                <div class="form-group form-md-line-input form-md-floating-label">
+                  <input type="text" class="form-control" id="detailInstructionResearch"
+                         ng-class="{'edited ng-touched':ActivityInstructionResearchFormBean.detailInstructionResearch.length > 0}"
+                         ng-model="ActivityInstructionResearchFormBean.detailInstructionResearch" maxlength="500" >
+                  <label for="detailInstructionResearch">Detail instruction/research</label>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-6 col-xs-12">
+              <div class="form-group form-md-line-input form-md-floating-label">
+                <select class="form-control" ng-class="{'edited ng-touched':ActivityInstructionResearchFormBean.countryId > 0}"
+                        id="ActivityInstructionResearchFormBean.countryId" ng-model="ActivityInstructionResearchFormBean.countryId"
+                        ng-options="country.countryId as country.countryName for country in masterCountries"
+                        ng-change="searchInstitution()">
+                      <option value=""></option>
+                </select>
+                <label for="countryId">Country</label>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-6 col-xs-12">
+              <div class="form-group form-md-line-input form-md-floating-label">
+                <select class="form-control" ng-class="{'edited ng-touched':ActivityInstructionResearchFormBean.institutionId > 0}"
+                        id="ActivityInstructionResearchFormBean.institutionId" ng-model="ActivityInstructionResearchFormBean.institutionId"
+                        ng-options="institution.institutionId as institution.institutionName for institution in masterInstitutions">
+                      <option value=""></option>
+                </select>
+                <label for="institutionId">Institution</label>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-6 col-xs-12">
+              <div class="form-group form-md-line-input form-md-floating-label">
+                <select class="form-control" ng-class="{'edited ng-touched':ActivityInstructionResearchFormBean.informFacultyId > 0}"
+                        id="ActivityInstructionResearchFormBean.informFacultyId" ng-model="ActivityInstructionResearchFormBean.informFacultyId"
+                        ng-options="faculty.facultyId as faculty.facultyName for faculty in masterFaculties">
+                      <option value=""></option>
+                </select>
+                <!-- <select class="form-control" id="agreementType"
+                        ng-model="ActivityInstructionResearchFormBean.facultyId"
+                        ng-class="{'edited ng-touched':ActivityInstructionResearchFormBean.facultyId > 0}">
+                    <option value="" selected></option>
+                    <option ng-repeat="agreementType in masterAgreementTypes" value="{{agreementType.facultyId}}">{{ agreementType.agreementTypeName }}</option>
+                </select> -->
+                <label for="informFacultyId">Inform Faculty</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 col-lg-12 col-xs-12 text-center">
+          <button type="reset" class="btn btn-outline grey-cascade">
+            Reset
+          </button>
+          <button type="button" class="btn bg-chula-pink-light font-white"
+                  ng-click="doSaveInstructionResearch()">
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

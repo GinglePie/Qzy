@@ -1,0 +1,115 @@
+<div class="row">
+  <div class="col-lg-12 col-xs-12 col-sm-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title tabbable-line">
+                <div class="caption">
+                    <i class="icon-bubbles font-dark hide"></i>
+                    <span class="caption-subject font-dark bold uppercase">Main Search</span>
+                </div>
+            </div>
+             <div class="portlet-body">
+                <div class="row">
+                  <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <div class="form-group form-md-line-input form-md-floating-label">
+                      <input type="text" class="form-control" id="institutionName"
+                             ng-model="searchBean.institutionName" maxlength="100" >
+                      <label for="institutionName">Full Name</label>
+                    </div>
+                  </div>
+                  <!-- <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <div class="form-group form-md-line-input form-md-floating-label">
+                        <select class="form-control" ng-class="{'edited ng-touched':searchBean.focusTypeId > 0}"
+                            id="focusType" ng-model="searchBean.focusTypeId"
+                            ng-options="focusType.focusTypeId as focusType.focusTypeDescription  for focusType in masterFocusTypes"
+                            ng-change="doSearchFocusGroup()">
+                            <option value=""></option>
+                      </select>
+                      <label for="agreementTypeId">Focus Type</label>
+                    </div>
+                  </div> -->
+                  <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <div class="form-group form-md-line-input form-md-floating-label">
+                      <input type="text" class="form-control" id="searchTerm"
+                             ng-model="searchBean.searchTerm" maxlength="100" >
+                      <label for="searchTerm">Search Term</label>
+                    </div>
+                  </div>
+                  <!-- <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <div class="form-group form-md-line-input form-md-floating-label">
+                        <select class="form-control" ng-class="{'edited ng-touched':searchBean.focusGroupId > 0}"
+                            id="focusGroup" ng-model="searchBean.focusGroupId"
+                            ng-options="focusGroup.focusGroupId as focusGroup.focusGroupDescription  for focusGroup in masterFocusGroups"
+                            ng-change="doSearchFocusSpecific()">
+                            <option value=""></option>
+                        </select>
+                      <label for="agreementTypeId">Focus Group</label>
+                    </div>
+                  </div> -->
+                  <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <div class="form-group form-md-line-input form-md-floating-label">
+                      <select class="form-control" id="countryId" ng-model="searchBean.countryId">
+                          <option value="" selected></option>
+                          <option ng-repeat="country in masterCountries" value="{{country.countryId}}">{{ country.countryName }}</option>
+                      </select>
+                      <label for="countryId">Country</label>
+                    </div>
+                  </div>
+                  <!-- <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <div class="form-group form-md-line-input form-md-floating-label">
+                        <select class="form-control" ng-class="{'edited ng-touched':searchBean.focusSpecificId > 0}"
+                            id="focusSpecific" 
+                            ng-options="focusSpecific.focusSpecificId as focusSpecific.focusSpecificDescription  for focusSpecific in masterFocusSpecifics"
+                            ng-model="searchBean.focusSpecificId">
+                            <option value=""></option>
+                        </select>
+                        <label for="agreementTypeId">Focus Specific</label>
+                    </div>
+                  </div> -->
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <button type="button" class="btn bg-chula-pink-light font-white"
+                                ng-click="doSearch()">
+                          Search
+                        </button>
+                    </div>
+                </div>
+             </div>
+        </div>
+        <div class="portlet light bordered">
+            <div class="portlet-body" style="padding-bottom:70px;">
+              <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12 text-right" style="margin-bottom:10px;">
+                <a class="btn green-dark btn-outline" ng-click="doInitAddInstitution()" can-action="P200">
+                    <i class="fa fa-plus"></i>
+                    Add University
+                </a>
+              </div>
+              <table ng-table="MainTable" class="table table-hover table-stripped">
+                  <thead>
+                      <th class="text-center bg-chula-pink-light font-white" width="20%"><b>Full Name</b></th>
+                      <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Country</b></th>
+                      <th class="text-center bg-chula-pink-light font-white" width="10%"><b>MOU</b></th>
+                      <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Quota</b></th>
+                      <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Faculties</b></th>
+                      <th class="text-center bg-chula-pink-light font-white" width="5%"><b>Edit</b></th>
+                  </thead>
+                  <tbody>
+                      <tr ng-repeat="d in $data">
+                          <td class="text-left">{{d.institutionName}}</td>
+                          <td class="text-left">{{d.countryName }}</td>
+                          <td class="text-center">{{d.cntMou}}</td>
+                          <td class="text-center">{{d.inbound}} / {{d.outbound}}</td>
+                          <td class="text-left">{{d.faculty }}</td>
+                          <td class="text-center">
+                            <a ng-click="doInitEditInstitution(d.institutionId)">
+                              <i class="fa fa-edit "></i>
+                            </a>
+                          </td>
+                      </tr>
+                  </tbody>
+               </table>
+            </div>
+        </div>
+    </div>
+</div>

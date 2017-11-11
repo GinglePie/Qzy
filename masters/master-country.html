@@ -1,0 +1,110 @@
+<div class="row">
+  <div class="col-lg-12 col-xs-12 col-sm-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title tabbable-line">
+                <div class="caption">
+                    <i class="icon-bubbles font-dark hide"></i>
+                    <span class="caption-subject font-dark bold uppercase">Master country</span>
+                </div>
+            </div>
+             <div class="portlet-body">
+                <div class="row">
+                  <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <div class="form-group form-md-line-input form-md-floating-label">
+                      <select class="form-control" id="regionId" ng-model="regionId">
+                          <option value="" selected></option>
+                          <option ng-repeat="region in regions" value="{{region.regionId}}">{{ region.regionName }}</option>
+                      </select>
+                      <label for="regionId">Region</label>
+                    </div>
+                  </div>
+                    <div class="col-sm-6 col-lg-6 col-xs-12">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                          <input type="text" class="form-control" id="countryName"
+                                 ng-model="countryName" maxlength="30" >
+                          <label for="countryName">Country name</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <button type="button" class="btn bg-chula-pink-light font-white"
+                                ng-click="doSearchCountry()">
+                          Search
+                        </button>
+                    </div>
+                </div>
+             </div>
+        </div>
+        <div class="portlet light bordered">
+            <div class="portlet-body" style="padding-bottom:70px;">
+              <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12 text-right" style="margin-bottom:10px;">
+                <a class="btn green-dark btn-outline"
+                     data-target="#modal-add-edit-country" data-toggle="modal"
+                     ng-click="resetModal()">
+                      <i class="fa fa-plus-circle "></i>
+                      Add Country
+                  </a>
+              </div>
+                <table ng-table="CountryTable" class="table table-hover table-striped">
+                    <thead>
+                        <th class="text-center bg-chula-pink-light font-white" width="20%"><b>Country name</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="20%"><b>Region name</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="5%"><b>Edit</b></th>
+                        <th class="text-center bg-chula-pink-light font-white" width="5%"><b>Delete</b></th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="d in $data">
+                            <td class="text-left">{{d.countryName}}</td>
+                            <td class="text-left">{{d.chulaMsRegion.regionName}}</td>
+                            <td class="text-center">
+                              <a ng-click="initEditCountry(d.countryId)">
+                                <i class="fa fa-edit "></i>
+                              </a>
+                            </td>
+                            <td class="text-center">
+                              <a ng-click="doDeleteCountry(d.countryId)">
+                                <i class="fa fa-trash font-red"></i>
+                              </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                 </table>
+            </div>
+        </div>
+    </div>
+    <div id="modal-add-edit-country" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false" data-attention-animation="false">
+        <div class="modal-header">
+            <h4>Add/Edit Country</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <input type="hidden" ng-model="modalCountryId"/>
+                <div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xs-12">
+                  <div class="form-group form-md-line-input form-md-floating-label">
+                    <select class="form-control" ng-class="{'edited ng-touched':modalRegionId > 0}"
+                            id="modalRegionId" ng-model="modalRegionId"
+                            ng-options="region.regionId as region.regionName for region in regions">
+                          <option value="0"></option>
+                    </select>
+                      <!-- <select class="form-control" ng-class="{'edited ng-touch':modalRegionId.length > 0}"
+                              id="modalRegionId" ng-model="modalRegionId">
+                          <option value="" selected></option>
+                          <option ng-repeat="region in regions" value="{{region.regionId}}">{{ region.regionName }}</option>
+                      </select> -->
+                      <label for="modalRegionId">Region</label>
+                  </div>
+                  <div class="form-group form-md-line-input form-md-floating-label">
+                      <input type="text" class="form-control" id="modalCountryName" ng-class="{'edited ng-touch':modalCountryName.length > 0}"
+                             ng-model="modalCountryName" maxlength="30">
+                      <label for="modalCountryName">Country name</label>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn grey-cascade btn-outline"> Cancel </button>
+            <button type="button" class="btn green-dark font-white" ng-click="doSaveCountry()">Submit</button>
+        </div>
+    </div>
+</div>

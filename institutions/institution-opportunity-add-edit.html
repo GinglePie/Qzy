@@ -1,0 +1,287 @@
+<div class="portlet light bordered">
+  <div class="portlet-title tabbable-line">
+      <div class="caption">
+          <i class="icon-bubbles font-dark hide"></i>
+          <span class="caption-subject font-dark bold uppercase">Opportunity add/edit</span>
+      </div>
+  </div>
+  <div class="portlet-body">
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-xs-12">
+        <div class="col-md-6 col-lg-6 col-xs-12">
+          <input type="hidden" ng-model="opportunityFormBean.institutionOpportunityId">
+          <div class="form-group form-md-line-input form-md-floating-label">
+            <input type="text" class="form-control" id="opportunityName"
+                   ng-model="opportunityFormBean.opportunityName" maxlength="100" 
+                   ng-class="{'edited ng-touched':opportunityFormBean.opportunityName.length > 0}"
+                   is-view-only="P250">
+            <label for="opportunityName">Name</label>
+          </div>
+          <div class="form-group form-md-line-input form-md-floating-label">
+              <textarea class="form-control" rows="10"
+                        ng-model="opportunityFormBean.activity"
+                        ng-class="{'edited ng-touched':opportunityFormBean.activity.length > 0}"
+                        is-view-only="P250"></textarea>
+              <label>Activity</label>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+            <select class="form-control" ng-class="{'edited ng-touched':opportunityFormBean.levelOfCooperation.length > 0}"
+                    id="levelOfCooperation" ng-model="opportunityFormBean.levelOfCooperation"
+                    ng-options="key as value for (key,value) in masterLevelOfCooperations"
+                    is-view-only="P250">
+                <option value=""></option>
+            </select>
+            <label for="levelOfCooperation">Level </label>
+          </div>
+          <div class="form-group form-md-line-input form-md-floating-label">
+            <select class="form-control" ng-class="{'edited ng-touched':opportunityFormBean.facultyId > 0}"
+                    id="facultyId" ng-model="opportunityFormBean.facultyId"
+                    ng-options="faculty.facultyId as faculty.facultyName for faculty in masterFaculties"
+                    is-view-only="P250">
+                <option value=""></option>
+            </select>
+            <label for="facultyId">Chula Faculty </label>
+          </div>
+          <div class="form-group form-md-line-input form-md-floating-label">
+            <select class="form-control" ng-class="{'edited ng-touched':opportunityFormBean.activityType.length > 0}"
+                    id="activityType" ng-model="opportunityFormBean.activityType"
+                    ng-options="key as value for (key,value) in masterActivityTypes"
+                    is-view-only="P250">
+                <option value=""></option>
+            </select>
+            <label for="activityType">Type </label>
+          </div>
+          <div class="form-group form-md-line-input form-md-floating-label">
+              <select class="form-control" ng-class="{'edited ng-touched':opportunityFormBean.priority.length > 0}"
+                  id="priority" ng-model="opportunityFormBean.priority"
+                  ng-options="key as value for (key,value) in masterPriorityTypes"
+                  is-view-only="P250">
+                  <option value=""></option>
+            </select>
+            <label for="priority">Priority </label>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-12 col-xs-12">
+        <div class="col-md-6 col-lg-6 col-xs-12 text-left">
+          <button type="button" class="btn grey-cascade btn-outline" ng-click="goToPage('site.institution.institution-management')"> Back </button>
+          <button type="button" class="btn red btn-outline" ng-click="doDeleteOpportunity()" can-action="P250">Delete</button>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xs-12 text-right">
+            <button type="button" class="btn green-dark font-white" ng-click="doSaveOpportunity()" can-action="P250">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-lg-6 col-xs-12">
+      <div class="portlet light bordered">
+        <div class="portlet-title tabbable-line">
+          <div class="caption">
+              <i class="icon-bubbles font-dark hide"></i>
+              <span class="caption-subject font-dark bold uppercase">Internal Contact Person</span>
+          </div>
+          <div class="actions">
+            <a class="btn btn-circle btn-icon-only green-dark"
+               ng-click="resetModal(); initAddContactPerson('I');"
+               can-action="P251">
+                <i class="fa fa-plus"></i>
+            </a>
+          </div>
+        </div>
+        <div class="portlet-body">
+          <div class="row">
+            <div class="col-sm-12 col-lg-12 col-xs-12">
+              <table ng-table="InternalContactPersonTable" class="table table-hover table-stripped">
+                  <thead>
+                      <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Name</b></th>
+                      <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Email</b></th>
+                      <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Contact</b></th>
+                      <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Faculty</b></th>
+                      <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Project</b></th>
+                      <th class="text-center bg-chula-pink-light font-white" width="5%"><b>Edit</b></th>
+                  </thead>
+                  <tbody>
+                      <tr ng-repeat="d in $data">
+                          <td class="text-left">{{d.fullName}}</td>
+                          <td class="text-left">{{d.email}}</td>
+                          <td class="text-left">{{d.contactPhoneNumber}}</td>
+                          <td class="text-center">{{d.chulaMsFaculty.facultyName}}</td>
+                          <td class="text-center">{{d.contactProject }}</td>
+                          <td class="text-center">
+                            <a ng-click="initEditContactPerson(d.institutionOpportunityContactPersonId)">
+                              <i class="fa fa-edit "></i>
+                            </a>
+                          </td>
+                      </tr>
+                  </tbody>
+               </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-6 col-xs-12">
+      <div class="portlet light bordered">
+        <div class="portlet-title tabbable-line">
+          <div class="caption">
+              <i class="icon-bubbles font-dark hide"></i>
+              <span class="caption-subject font-dark bold uppercase">External Contact Person</span>
+          </div>
+          <div class="actions">
+            <a class="btn btn-circle btn-icon-only green-dark"
+               ng-click="resetModal(); initAddContactPerson('E');"
+               can-action="P251">
+                <i class="fa fa-plus"></i>
+            </a>
+          </div>
+        </div>
+        <div class="portlet-body">
+          <div class="row">
+            <div class="col-sm-12 col-lg-12 col-xs-12">
+              <table ng-table="ExternalContactPersonTable" class="table table-hover table-stripped">
+                <thead>
+                    <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Name</b></th>
+                    <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Email</b></th>
+                    <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Contact</b></th>
+                    <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Faculty</b></th>
+                    <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Project</b></th>
+                    <th class="text-center bg-chula-pink-light font-white" width="5%"><b>Edit</b></th>
+                    
+                </thead>
+                <tbody>
+                    <tr ng-repeat="d in $data">
+                      <td class="text-left">{{d.fullName}}</td>
+                      <td class="text-left">{{d.email}}</td>
+                      <td class="text-left">{{d.contactPhoneNumber}}</td>
+                      <td class="text-center">{{d.chulaMsFaculty.facultyName}}</td>
+                      <td class="text-center">{{d.contactProject }}</td>
+                        <td class="text-center">
+                          <a ng-click="initEditContactPerson(d.institutionOpportunityContactPersonId)">
+                            <i class="fa fa-edit "></i>
+                          </a>
+                        </td>
+                        
+                    </tr>
+                </tbody>
+               </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="row">
+  <div class="col-md-12 col-lg-12 col-xs-12">
+    <div class="portlet light bordered" >
+      <div class="portlet-title tabbable-line">
+        <div class="caption">
+            <i class="icon-bubbles font-dark hide"></i>
+            <span class="caption-subject font-dark bold uppercase">Recent Activities</span>
+        </div>
+        <div class="actions">
+          <a class="btn btn-circle btn-icon-only green-dark" 
+             data-target="#modal-activity" data-toggle="modal"
+             ng-click="resetModal()" can-action="P253">
+              <i class="fa fa-plus"></i>
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <div class="row">
+          <div class="col-sm-12 col-lg-12 col-xs-12">
+            <table ng-table="OpportunityActivityTable" class="table table-bordered table-hover table-strip">
+                <thead>
+                    <th class="text-center bg-chula-pink-light font-white" width="10%"><b>Date</b></th>
+                    <th class="text-center bg-chula-pink-light font-white" width="30%"><b>Action</b></th>
+                    <th class="text-center bg-chula-pink-light font-white" width="10%"><b>File</b></th>
+                    <th class="text-center bg-chula-pink-light font-white" width="5%"><b>Edit</b></th>
+                    <th class="text-center bg-chula-pink-light font-white" width="5%"><b>Del</b></th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="d in $data">
+                        <td class="text-center">{{d.opportunityActivityDate | formatDate}}</td>
+                        <td class="text-left">{{d.opportunityActivityAction}}</td>
+                        <td class="text-left">{{d.opportunityActivityFileName}}</td>
+                        <td class="text-center">
+                          <a ng-click="initEditInstitutionOpportunityActivity(d.institutionOpportunityActivityId)">
+                            <i class="fa fa-edit "></i>
+                          </a>
+                        </td>
+                        <td class="text-center">
+                          <a ng-click="doDeleteInstitutionOpportunityActivity(d.institutionOpportunityActivityId)">
+                            <i class="fa fa-trash font-red"></i>
+                          </a>
+                        </td>
+                    </tr>
+                </tbody>
+             </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Contact person -->
+<modal-contact-person controller-name="InstitutionOpportunityContactPersonController" page-code="P251"></modal-contact-person>
+
+<!-- activity -->
+<div id="modal-activity" class="modal container fade" tabindex="-1" data-backdrop="static" data-keyboard="false" data-attention-animation="false">
+  <div class="modal-header bg-chula-pink-light">
+      <h4 class="font-white" id="exchange-institution-name"></h4>
+  </div>
+  <div class="modal-body">
+    <input type="hidden" ng-model="opportunityActivityFormBean.institutionOpportunityId">
+    <input type="hidden" ng-model="opportunityActivityFormBean.institutionOpportunityActivityId">
+    <h4 class="font-chula-pink">Activity</h4>
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-xs-12">
+        <div class="col-sm-6 col-lg-6 col-xs-12">
+          <div class="form-group form-md-line-input form-md-floating-label">
+              <div class="input-group right-addon">
+                  <input type="text" class="form-control" data-provide="datepicker" id="asDate"
+                          ng-model="opportunityActivityFormBean.asDate" maxlength="10"
+                          ng-class="{'edited ng-touched':opportunityActivityFormBean.asDate.length > 0}"
+                          data-date-format="dd/mm/yyyy"
+                          is-view-only="P253">
+                  <label for="asDate">Date</label>
+                  <span class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                  </span>
+              </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-6 col-xs-12">
+            <label>File upload</label>
+            <span>
+              <a ng-click="downloadFile(opportunityActivityFile,opportunityActivityFormBean.institutionOpportunityActivityId)">
+                  {{opportunityActivityFile}}
+                  <i class="fa fa-download" ng-show="opportunityActivityFile.length > 0"></i>
+                </a>
+            </span>
+            <input type="file" is-view-only="P253" ng-model="opportunityActivityFormBean.fileUpload" base-sixty-four-input do-not-parse-if-oversize maxsize="5000" file-input />
+        </div>
+      </div>
+      <div class="col-sm-12 col-lg-12 col-xs-12">
+        <div class="form-group form-md-line-input form-md-floating-label">
+            <textarea class="form-control" rows="5"
+                      ng-model="opportunityActivityFormBean.action"
+                      ng-class="{'edited ng-touched':opportunityActivityFormBean.action.length > 0}"
+                      is-view-only="P253"></textarea>
+            <label>Activity</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="col-sm-6 col-lg-6 col-xs-12 text-left">
+        <button type="button" data-dismiss="modal" class="btn grey-cascade btn-outline"> Back </button>
+    </div>
+    <div class="col-sm-6 col-lg-6 col-xs-12 text-right">
+        <button type="button" class="btn green-dark font-white" ng-click="doSaveOpportunityActivity()" can-action="P253">Submit</button>
+    </div>
+  </div>
+</div>

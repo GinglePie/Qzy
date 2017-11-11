@@ -1,0 +1,141 @@
+
+<!-- BEGIN SIDEBAR -->
+<!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+<!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+<div class="page-sidebar navbar-collapse collapse" ng-controller="MenuController as menu">
+    <!-- BEGIN SIDEBAR MENU -->
+    <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+    <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+    <!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+    <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+    <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+    <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+    <ul class="page-sidebar-menu page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="500">
+        <li class="nav-item start " data-ng-class="{ 'active open': menu.$state.includes('site.main-search') }">
+            <a ui-sref="site.main-search" class="nav-link nav-toggle">
+                <i class="icon-home font-black"></i>
+                <span class="title">Home</span>
+            </a>
+
+        </li>
+        <li class="nav-item page-menu start " has-authority="*" data-ng-class="{ 'active open': menu.$state.includes('site.institution.institution-management') ||
+                                                                                                menu.$state.includes('site.institution-relationship-add-edit') ||
+                                                                                                menu.$state.includes('site.institution-opportunity-add-edit') ||
+                                                                                                menu.$state.includes('site.institution-activity-add-edit')}">
+            <a ui-sref="site.institution.institution-management" class="nav-link nav-toggle">
+                <i class="fa fa-university font-black"></i>
+                <span class="title">University</span>
+            </a>
+        </li>
+        <li class="nav-item page-menu start ">
+            <a class="nav-link nav-toggle">
+                <i class="fa fa-file-text-o font-black"></i>
+                <span class="title">Activity</span>
+            </a>
+        </li>
+        <li class="nav-item page-menu start " has-authority="ADMIN" data-ng-class="{ 'active open': menu.$state.includes('site.master-main') ||
+                                                                                                menu.$state.includes('site.master-region') ||
+                                                                                                menu.$state.includes('site.master-faculty') ||
+                                                                                                menu.$state.includes('site.master-country') ||
+                                                                                                menu.$state.includes('site.master-agreement-type') ||
+                                                                                                menu.$state.includes('site.master-prefix') ||
+                                                                                                menu.$state.includes('site.master-province') ||
+                                                                                                menu.$state.includes('site.master-amphur') ||
+                                                                                                menu.$state.includes('site.master-tambol') ||
+                                                                                                menu.$state.includes('site.master-person')||
+                                                                                                menu.$state.includes('site.master-add-edit-person')}">
+            <a class="nav-link nav-toggle">
+                <i class="fa fa-hdd-o font-black"></i>
+                <span class="title">Master</span>
+                <span class="arrow" data-ng-class="{ 'open': menu.$state.includes('site.master-main') ||
+                                                             menu.$state.includes('site.master-region') ||
+                                                             menu.$state.includes('site.master-faculty') ||
+                                                             menu.$state.includes('site.master-country') ||
+                                                             menu.$state.includes('site.master-agreement-type') ||
+                                                             menu.$state.includes('site.master-prefix') ||
+                                                             menu.$state.includes('site.master-province') ||
+                                                             menu.$state.includes('site.master-amphur') ||
+                                                             menu.$state.includes('site.master-tambol') ||
+                                                             menu.$state.includes('site.master-add-edit-person')}"></span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item  " data-ng-class="{ 'active open': menu.$state.includes('site.master-region')} ">
+                    <a ui-sref="site.master-region" class="nav-link ">
+                        <span class="title">Region</span>
+                    </a>
+                </li>
+                <li class="nav-item  " data-ng-class="{ 'active open': menu.$state.includes('site.master-country')} ">
+                    <a ui-sref="site.master-country"  class="nav-link ">
+                        <span class="title">Country</span>
+                    </a>
+                </li>
+                <li class="nav-item  " data-ng-class="{ 'active open': menu.$state.includes('site.master-faculty')} ">
+                    <a ui-sref="site.master-faculty"  class="nav-link ">
+                        <span class="title">Faculty</span>
+                    </a>
+                </li>
+                <li class="nav-item  " data-ng-class="{ 'active open': menu.$state.includes('site.master-agreement-type')} ">
+                    <a ui-sref="site.master-agreement-type"  class="nav-link ">
+                        <span class="title">Agreement type</span>
+                    </a>
+                </li>
+                <li class="nav-item  " data-ng-class="{ 'active open': menu.$state.includes('site.master-prefix')} ">
+                    <a ui-sref="site.master-prefix"  class="nav-link ">
+                        <span class="title">Prefix</span>
+                    </a>
+                </li>
+                <li class="nav-item  " data-ng-class="{ 'active open': menu.$state.includes('site.master-person') ||
+                                                                       menu.$state.includes('site.master-add-edit-person')} ">
+                    <a ui-sref="site.master-person"  class="nav-link ">
+                        <span class="title">Person</span>
+                    </a>
+                </li>
+                <li class="nav-item  " data-ng-class="{ 'active open': menu.$state.includes('site.master-province')} ">
+                    <a ui-sref="site.master-province"  class="nav-link ">
+                        <span class="title">Province</span>
+                    </a>
+                </li>
+                <li class="nav-item  " data-ng-class="{ 'active open': menu.$state.includes('site.master-amphur')} ">
+                    <a ui-sref="site.master-amphur"  class="nav-link ">
+                        <span class="title">Amphur</span>
+                    </a>
+                </li>
+                <li class="nav-item  " data-ng-class="{ 'active open': menu.$state.includes('site.master-tambol')} ">
+                    <a ui-sref="site.master-tambol"  class="nav-link ">
+                        <span class="title">Tambol</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item page-menu start " data-ng-class="{ 'active open': menu.$state.includes('site.user-main') || 
+                                                                              menu.$state.includes('site.role-main')}"
+            has-authority="ADMIN">
+            <a class="nav-link nav-toggle">
+                <i class="fa fa-cogs font-black"></i>
+                <span class="title">Setting</span>
+                <span class="arrow" data-ng-class="{ 'open': menu.$state.includes('site.user-main') || 
+                                                             menu.$state.includes('site.role-main')}"></span>
+            </a>
+            <ul class="sub-menu">
+                <li class="nav-item  " data-ng-class="{ 'active open': menu.$state.includes('site.user-main')}">
+                    <a ui-sref="site.user-main" class="nav-link">
+                        <i class="fa fa-user-o font-black"></i> Users
+                    </a>
+                </li>
+                <li class="nav-item  " data-ng-class="{ 'active open': menu.$state.includes('site.role-main')}">
+                    <a ui-sref="site.role-main" class="nav-link" >
+                        <i class="fa fa-sitemap font-black"></i> Roles
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <!-- <li class="nav-item " data-ng-class="{ 'active open': menu.$state.includes('site.user-main')}">
+            <a ui-sref="site.user-main" class="nav-link">
+                <i class="fa fa-user-o font-black"></i> User management
+            </a>
+        </li> -->
+    </ul>
+    <!-- END SIDEBAR MENU -->
+</div>
+<!-- END SIDEBAR -->
+<script src="assets/vendors/layout.js" type="text/javascript"></script>

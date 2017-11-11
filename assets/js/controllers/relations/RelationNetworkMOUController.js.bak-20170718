@@ -1,0 +1,52 @@
+'use strict';
+
+oiaApplication.controller('RelationNetworkMOUController',function($rootScope,$state,$stateParams,$scope,$location, $cookies, localStorageService){
+
+	const siteMap = {
+			"information":"site.relation-add-edit-network-mou-main.information",
+			"institution":"site.relation-add-edit-network-mou-main.institution",
+			"faculty":"site.relation-add-edit-network-mou-main.faculty"
+		};
+
+	$scope.doChangeTab = function(tabName){
+		console.log($state.current);
+		var currentState = $state.current.name;
+		var action = $stateParams.action;
+		var networkMouId = $stateParams.networkMouId;
+		if(action !== "A"){
+			swal({
+	        title: "Confirm?",
+	        text: "",
+	        type: "warning",
+	        showCancelButton: true,
+	        confirmButtonColor: "#641E20",
+	        confirmButtonText: "OK",
+	        cancelButtonText: "Cancel",
+	        closeOnConfirm: true
+	    }, function(isConfirm){
+	        if(isConfirm){
+						if(tabName === 'information'){
+							$state.go('site.relation-add-edit-network-mou-main.information');
+						}else if(tabName === 'institution'){
+							$state.go('site.relation-add-edit-network-mou-main.institution');
+						}else if(tabName === 'faculty'){
+							$state.go('site.relation-add-edit-network-mou-main.faculty');
+						}
+					}else{
+
+						console.log("action: "+action+" networkMouId: "+networkMouId);
+						if(currentState === 'site.relation-add-edit-network-mou-main.information'){
+							$state.go(currentState,{networkMouId:networkMouId,action:action},{reload:true});
+						}else{
+							console.log($rootScope.networkMou);
+							$rootScope.networkMou = $rootScope.networkMou;
+							$state.go(currentState);
+						}
+
+					}
+
+			});
+		}
+	}
+
+});
